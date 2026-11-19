@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.impeccable/review/
+.impeccable/questions/
+.impeccable/brief-body.md
+*.log
+
+demo/Untitled.md
+demo/httpsnologin.inzainprotectplusio.md

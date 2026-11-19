@@ -1,0 +1,83 @@
+{
+  "name": "maddy-md",
+  "productName": "Maddy MD",
+  "version": "1.0.0",
+  "description": "A reading room for folders of Markdown and text files: themes, Mermaid, tabs, graph view and Gist sync",
+  "main": "main.js",
+  "author": "ahm-raz",
+  "license": "ISC",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis portable"
+  },
+  "dependencies": {
+    "@fontsource-variable/atkinson-hyperlegible-mono": "^5.3.0",
+    "@fontsource-variable/atkinson-hyperlegible-next": "^5.3.0",
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource-variable/literata": "^5.3.0",
+    "dompurify": "^3.4.18",
+    "highlight.js": "^11.12.0",
+    "marked": "^15.0.12",
+    "mermaid": "^11.17.2",
+    "turndown": "^7.2.5",
+    "turndown-plugin-gfm": "^1.0.2"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "app.maddymd.desktop",
+    "productName": "Maddy MD",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "demo/Welcome.md",
+      "demo/Project Atlas.md",
+      "demo/notes/**/*",
+      "build/icon.png",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Maddy MD",
+      "artifactName": "Maddy-MD-Setup-${version}.exe"
+    },
+    "portable": {
+      "artifactName": "Maddy-MD-Portable-${version}.exe"
+    },
+    "fileAssociations": [
+      {
+        "ext": "md",
+        "name": "Markdown",
+        "role": "Editor"
+      },
+      {
+        "ext": "markdown",
+        "name": "Markdown",
+        "role": "Editor"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahm-raz/maddy-md.git"
+  },
+  "homepage": "https://maddy-md.vercel.app"
+}

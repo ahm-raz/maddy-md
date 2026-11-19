@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en" data-theme="orbit">
+<head>
+<meta charset="utf-8" />
+<title>Maddy MD</title>
+<link rel="stylesheet" href="../node_modules/@fontsource-variable/atkinson-hyperlegible-next/wght.css" />
+<link rel="stylesheet" href="../node_modules/@fontsource-variable/atkinson-hyperlegible-next/wght-italic.css" />
+<link rel="stylesheet" href="../node_modules/@fontsource-variable/atkinson-hyperlegible-mono/wght.css" />
+<link rel="stylesheet" href="../node_modules/@fontsource-variable/bricolage-grotesque/standard.css" />
+<link rel="stylesheet" href="../node_modules/@fontsource-variable/literata/wght.css" />
+<link rel="stylesheet" href="ui.css" />
+<script src="../node_modules/marked/lib/marked.umd.js"></script>
+<script src="../node_modules/dompurify/dist/purify.min.js"></script>
+<script src="../node_modules/mermaid/dist/mermaid.min.js"></script>
+<script src="icons.js"></script>
+</head>
+<body>
+<!-- Chrome-style tab strip -->
+<header id="titlebar">
+  <button class="tb-btn" id="toggleSide" data-icon="sidebarL" title="Toggle sidebar (Ctrl+\)"></button>
+  <div id="tabs" role="tablist" aria-label="Open pages"></div>
+  <button class="tb-btn new-tab" id="newTab" data-icon="plus" title="New page (Ctrl+T)"></button>
+  <div class="tb-drag"></div>
+</header>
+
+<div id="app">
+  <!-- Ribbon -->
+  <nav id="ribbon" aria-label="Main">
+    <button data-icon="files" data-size="19" id="rbFiles" title="Pages"></button>
+    <button data-icon="search" data-size="19" id="rbSearch" title="Search everything (Ctrl+Shift+F)"></button>
+    <button data-icon="command" data-size="19" id="rbPalette" title="Command palette (Ctrl+P)"></button>
+    <button data-icon="graph" data-size="19" id="rbGraph" title="Graph view (Ctrl+G)"></button>
+    <button data-icon="calendar" data-size="19" id="rbDaily" title="Today's daily note"></button>
+    <div class="grow"></div>
+    <button data-icon="moon" data-size="19" id="rbTheme" title="Switch the reading sheet between light and dark paper"></button>
+    <button data-icon="cloud" data-size="19" id="syncBtn" title="Cloud sync"></button>
+    <button data-icon="settings" data-size="19" id="settingsBtn" title="Customize (Ctrl+,)"></button>
+  </nav>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" aria-label="Pages">
+    <div class="vault-head" id="vaultHead" title="Switch vault / folder">
+      <span class="vault-ic" id="vaultIc">M</span>
+      <div class="vault-meta"><b id="vaultName">No vault open</b><span id="folderName">Open a folder to start</span></div>
+      <span data-icon="chevron" class="vault-chev"></span>
+    </div>
+    <div class="side-actions">
+      <button id="openFolder" data-icon="folderOpen" title="Open folder (Ctrl+Shift+O)"></button>
+      <button id="newFile" data-icon="filePlus" title="New page (Ctrl+N)"></button>
+      <button id="newFolder" data-icon="folderPlus" title="New folder"></button>
+      <button id="pasteNew" data-icon="clipboard" title="Paste clipboard as new page (Ctrl+Shift+V)"></button>
+      <button id="openFile" data-icon="file" title="Open a single file"></button>
+    </div>
+    <div class="search-box"><span data-icon="search" data-size="14"></span><input id="filter" aria-label="Search pages, text and tags" placeholder="Search pages, text, #tags…" spellcheck="false" autocomplete="off" /></div>
+    <div id="pinned"></div>
+    <div class="side-label">Pages</div>
+    <div id="tree"><div class="empty-side">Open a folder of .md or .txt files to see its pages here.</div></div>
+    <div id="vignette"></div>
+  </aside>
+  <div id="resizer"></div>
+
+  <!-- Main -->
+  <div id="mainCol">
+    <div id="docbar">
+      <div class="crumbs" id="crumbs">No page</div>
+      <div class="grow"></div>
+      <span class="saved" id="stDirty"></span>
+      <div class="seg" id="modeSeg">
+        <button data-mode="preview" data-icon="book" class="on" title="Read (Ctrl+1)"></button>
+        <button data-mode="split" data-icon="split" title="Split (Ctrl+2)"></button>
+        <button data-mode="edit" data-icon="pen" title="Write (Ctrl+3)"></button>
+      </div>
+      <div class="zoom">
+        <button id="zoomOut" data-icon="zoomOut" title="Zoom out (Ctrl −)"></button>
+        <span id="zoomVal" title="Reset zoom">100%</span>
+        <button id="zoomIn" data-icon="zoomIn" title="Zoom in (Ctrl +)"></button>
+      </div>
+      <button class="tb-btn" id="splitBtn" data-icon="split" title="Split editor (Ctrl+Alt+→ / ← / ↓)"></button>
+      <button class="tb-btn" id="starBtn" data-icon="star" title="Star this page"></button>
+      <button class="tb-btn" id="studyBtn" data-icon="bookmarkPlus" title="Add to study list"></button>
+      <button class="tb-btn" id="stickyBtn" data-icon="sticky" title="Add sticky note (Alt+N)"></button>
+      <button class="tb-btn" id="zenBtn" data-icon="focus" title="Zen mode (Ctrl+K Z) · Esc to exit"></button>
+      <button class="tb-btn" id="toggleRight" data-icon="sidebarR" title="Toggle right panel"></button>
+    </div>
+    <main id="main">
+      <div id="stage" aria-hidden="true"></div>
+      <div id="leftGroups" class="groups side"></div>
+      <div id="centerCol">
+        <div id="centerRow">
+      <div class="sash" id="sashL" title="Drag to resize · double-click to reset"></div><div class="sash" id="sashR" title="Drag to resize · double-click to reset"></div><div id="sashTip"></div>
+      <section id="editorPane"><textarea id="editor" aria-label="Markdown source" spellcheck="false" placeholder="Type '/' for blocks… paste from ChatGPT / Claude and it becomes clean Markdown."></textarea></section>
+      <section id="previewPane"><div id="readBar"></div><article id="preview" class="md"></article><div id="stickyLayer"></div><div id="resumeFlag" title="Where you stopped reading. Click to dismiss."></div><div id="finishBar"></div></section>
+          <div id="dropZones"><i data-z="left"></i><i data-z="right"></i><i data-z="bottom"></i><i data-z="center"></i><span id="dropLabel"></span></div>
+        </div>
+        <div id="bottomGroups" class="groups bottom"></div>
+      </div>
+      <div id="rightGroups" class="groups side"></div>
+      <aside id="toc" aria-label="Outline and personal panels">
+        <div class="rtabs">
+          <button data-rt="outline" class="on" data-icon="list" title="Outline"></button>
+          <button data-rt="backlinks" data-icon="backlink" title="Backlinks"></button>
+          <button data-rt="tags" data-icon="hash" title="Tags"></button>
+          <button data-rt="todo" data-icon="todo" title="To-do"><i class="rbadge" id="todoBadge"></i></button>
+          <button data-rt="study" data-icon="study" title="Study list"><i class="rbadge" id="studyBadge"></i></button>
+          <button data-rt="notes" data-icon="sticky" title="Sticky notes"><i class="rbadge" id="notesBadge"></i></button>
+        </div>
+        <div class="rpane on" data-rp="outline"><div class="toc-title">Outline</div><div id="tocList"></div></div>
+        <div class="rpane" data-rp="backlinks"><div class="toc-title">Linked mentions</div><div id="backlinks"></div></div>
+        <div class="rpane" data-rp="tags"><div class="toc-title">Tags in vault</div><div id="tagList"></div></div>
+        <div class="rpane" data-rp="todo"><div id="todoPane"></div></div>
+        <div class="rpane" data-rp="study"><div id="studyPane"></div></div>
+        <div class="rpane" data-rp="notes"><div id="notesPane"></div></div>
+      </aside>
+    </main>
+  </div>
+</div>
+
+<footer id="status">
+  <span id="stFile">—</span>
+  <span class="grow"></span>
+  <span id="stLinks"></span>
+  <span id="stSync"></span>
+  <span id="stWords"></span>
+  <span id="stRead"></span>
+</footer>
+
+<template id="welcomeTpl">
+  <div class="welcome">
+    <h1>Maddy MD</h1>
+    <p class="sub">A reading room for your Markdown and text files. Pick a folder and its pages appear on the left.</p>
+    <button class="wl-row" data-act="open"><span class="wi" data-icon="folderOpen" data-size="20"></span><div><b>Open a folder</b><span>Any folder of .md or .txt files</span></div><kbd>Ctrl+Shift+O</kbd></button>
+    <button class="wl-row" data-act="paste"><span class="wi" data-icon="clipboard" data-size="20"></span><div><b>Paste as a new page</b><span>Rich text from ChatGPT or Claude becomes Markdown</span></div><kbd>Ctrl+Shift+V</kbd></button>
+    <button class="wl-row" data-act="switch"><span class="wi" data-icon="search" data-size="20"></span><div><b>Find or create a page</b><span>Type a name; a new one is made if it does not exist</span></div><kbd>Ctrl+O</kbd></button>
+    <button class="wl-row" data-act="palette"><span class="wi" data-icon="command" data-size="20"></span><div><b>Run a command</b><span>Every action in the app, searchable</span></div><kbd>Ctrl+P</kbd></button>
+    <button class="wl-row" data-act="theme"><span class="wi" data-icon="palette" data-size="20"></span><div><b>Choose a theme</b><span>Fifteen scenes, from deep space to a quiet sheet of paper</span></div><kbd>Ctrl+,</kbd></button>
+  </div>
+</template>
+
+<!-- Settings drawer -->
+<div id="drawer" class="drawer">
+  <div class="drawer-head"><h2><span data-icon="palette"></span> Customize</h2><button class="icon" data-close data-icon="x"></button></div>
+  <div class="drawer-tabs">
+    <button data-dt="look" class="on">Look</button><button data-dt="type">Type</button><button data-dt="layout">Layout</button><button data-dt="motion">Motion</button><button data-dt="content">Content</button>
+  </div>
+  <div class="drawer-body">
+    <section data-ds="look" class="on">
+      <h3>Theme</h3>
+      <div id="themes" class="themes"></div>
+      <h3>Stage</h3>
+      <label class="row col">Scene
+        <select id="scene"><option value="full">Full scene</option><option value="calm">Calm (dimmed scene)</option><option value="off">Plain colour, no scene</option></select></label>
+      <label class="row">Show characters <input type="checkbox" id="chars" /></label>
+      <label class="row">Layers drift as you scroll <input type="checkbox" id="parallax" /></label>
+      <label class="row col">Reading sheet
+        <select id="sheetTone"><option value="auto">Match the theme</option><option value="light">Light paper</option><option value="dark">Dark paper</option></select></label>
+      <h3>Accent</h3>
+      <div id="accents" class="accents"></div>
+      <label class="row">Custom accent <input type="color" id="accent" /></label>
+      <button class="ghost small" id="resetAccent">Use the Theme's Accent</button>
+      <h3>Details</h3>
+      <label class="row col">Corner roundness <span class="val" id="radiusV"></span><input type="range" id="radius" min="0" max="20" step="1" /></label>
+      <label class="row">Coloured headings <input type="checkbox" id="headColor" /></label>
+      <label class="row col">Link style <select id="linkStyle"><option value="underline">Underline</option><option value="pill">Soft pill</option><option value="plain">Plain colour</option></select></label>
+      <label class="row col">Bullets <select id="bullet"><option value="disc">Dot</option><option value="dash">Dash</option><option value="arrow">Arrow</option><option value="square">Square</option></select></label>
+      <label class="row col">Checkboxes <select id="checkStyle"><option value="round">Round</option><option value="square">Square</option></select></label>
+    </section>
+    <section data-ds="type">
+      <label class="row col">Reading font
+        <select id="fontBody">
+          <option value="var(--f-ui)">Atkinson Hyperlegible (clear sans)</option>
+          <option value="'Literata Variable', Georgia, serif">Literata (book serif)</option>
+          <option value="'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif">Segoe UI (system)</option>
+          <option value="Georgia,'Palatino Linotype',serif">Georgia</option>
+          <option value="var(--f-mono)">Atkinson Mono</option>
+        </select></label>
+      <label class="row col">Heading font
+        <select id="fontHead">
+          <option value="var(--f-display)">Bricolage Grotesque</option>
+          <option value="inherit">Same as the reading font</option>
+          <option value="'Literata Variable', Georgia, serif">Literata (serif)</option>
+        </select></label>
+      <label class="row col">Code font
+        <select id="fontCode">
+          <option value="var(--f-mono)">Atkinson Mono</option>
+          <option value="'Cascadia Code',Consolas,monospace">Cascadia Code</option>
+          <option value="Consolas,monospace">Consolas</option>
+        </select></label>
+      <label class="row col">Text size <span class="val" id="sizeV"></span><input type="range" id="size" min="12" max="24" step="0.5" /></label>
+      <label class="row col">Line height <span class="val" id="lhV"></span><input type="range" id="lh" min="1.2" max="2.2" step="0.05" /></label>
+      <label class="row col">Paragraph spacing <span class="val" id="paraV"></span><input type="range" id="para" min="0.4" max="2" step="0.1" /></label>
+      <label class="row col">Editor font size <span class="val" id="edSizeV"></span><input type="range" id="edSize" min="11" max="22" step="1" /></label>
+      <label class="row">Justify text <input type="checkbox" id="justify" /></label>
+      <label class="row">Numbered headings <input type="checkbox" id="numbered" /></label>
+      <label class="row">Heading underline <input type="checkbox" id="headLine" /></label>
+    </section>
+    <section data-ds="layout">
+      <label class="row col">Page width <span class="val" id="widthV"></span><input type="range" id="width" min="360" max="2400" step="10" /></label>
+      <label class="row col">Interface density <select id="density"><option value="compact">Compact</option><option value="cozy">Cozy</option><option value="roomy">Roomy</option></select></label>
+      <label class="row col">Interface scale <span class="val" id="uiScaleV"></span><input type="range" id="uiScale" min="0.85" max="1.3" step="0.05" /></label>
+      <label class="row col">Tab style <select id="tabStyle"><option value="chrome">Chrome (curved)</option><option value="pill">Pills</option><option value="underline">Underline</option></select></label>
+      <label class="row">Show page cover &amp; icon <input type="checkbox" id="showCover" /></label>
+      <label class="row">Show properties <input type="checkbox" id="showProps" /></label>
+      <label class="row">Show right panel <input type="checkbox" id="showToc" /></label>
+      <label class="row">Show sidebar <input type="checkbox" id="showSide" /></label>
+      <label class="row">Show ribbon <input type="checkbox" id="showRibbon" /></label>
+      <label class="row">Focus mode (dim chrome) <input type="checkbox" id="focus" /></label>
+      <label class="row">Sync scroll in split <input type="checkbox" id="syncScroll" /></label>
+      <label class="row col">Code blocks <select id="codeStyle"><option value="card">Card</option><option value="flat">Flat (no header)</option></select></label>
+      <label class="row col">Tables <select id="tableStyle"><option value="striped">Striped</option><option value="grid">Grid</option><option value="minimal">Minimal</option></select></label>
+    </section>
+    <section data-ds="motion">
+      <label class="row col">Motion
+        <select id="motion"><option value="full">Full</option><option value="reduced">Reduced (the scene holds still)</option><option value="off">Off</option></select></label>
+      <label class="row">Smooth scrolling <input type="checkbox" id="smoothScroll" /></label>
+      <p class="muted">Scene animation pauses whenever the window is hidden, and follows your Windows "show animations" setting.</p>
+    </section>
+    <section data-ds="content">
+      <label class="row">Render raw HTML <input type="checkbox" id="allowHtml" /></label>
+      <label class="row">Convert pasted rich text to Markdown <input type="checkbox" id="pasteConvert" /></label>
+      <label class="row">Auto-save while writing <input type="checkbox" id="autosave" /></label>
+      <label class="row">Line wrap in editor <input type="checkbox" id="wrap" /></label>
+      <label class="row">Slash "/" block menu <input type="checkbox" id="slash" /></label>
+      <label class="row col">Mermaid theme
+        <select id="mermaidTheme"><option value="auto">Match app theme</option><option value="default">Default</option><option value="dark">Dark</option><option value="neutral">Neutral</option><option value="forest">Forest</option><option value="base">Accent-tinted</option></select></label>
+      <label class="row col">Daily note folder <input id="dailyFolder" placeholder="Vault root…" autocomplete="off" spellcheck="false" /></label>
+      <h3>Export</h3>
+      <div class="side-row"><button id="exportHtml">Export HTML</button><button id="exportPdf">Export PDF</button></div>
+      <h3>Reset</h3>
+      <button class="ghost small" id="resetAll">Reset All Settings…</button>
+    </section>
+  </div>
+</div>
+
+<!-- Sync drawer -->
+<div id="syncDrawer" class="drawer">
+  <div class="drawer-head"><h2><span data-icon="cloud"></span> Cloud Sync</h2><button class="icon" data-close data-icon="x"></button></div>
+  <div class="drawer-body">
+    <p class="muted">Your vault syncs to a <b>private GitHub Gist</b>. It's free, every push is versioned, and it works across all your PCs.</p>
+    <ol class="muted steps">
+      <li>Open <a href="https://github.com/settings/tokens/new?scopes=gist&description=Maddy%20MD" target="_blank">github.com → New token</a> and tick only <code>gist</code>.</li>
+      <li>Paste it below and press <b>Connect</b>.</li>
+      <li><b>Push</b> uploads this vault. On another PC, open a folder with the same name and press <b>Pull</b>.</li>
+    </ol>
+    <label class="row col">GitHub token <input type="password" id="token" placeholder="ghp_… or github_pat_…" autocomplete="off" spellcheck="false" /></label>
+    <div class="side-row"><button class="primary" id="connect">Connect</button><span id="who" class="muted"></span></div>
+    <hr />
+    <div id="syncFolder" class="muted">Open a folder first.</div>
+    <div class="side-row"><button class="primary" id="push"><span data-icon="upload" data-size="14"></span> Push</button><button id="pull"><span data-icon="download" data-size="14"></span> Pull</button></div>
+    <label class="row">Auto-push after saving <input type="checkbox" id="autoPush" /></label>
+    <div id="syncLog" class="log"></div>
+  </div>
+</div>
+
+<!-- Palette / quick switcher -->
+<div id="palette" class="modal-bg">
+  <div class="palette">
+    <div class="pal-input"><span id="palIc" data-icon="search" data-size="18"></span><input id="palInput" aria-label="Find a page or run a command" spellcheck="false" autocomplete="off" /></div>
+    <div id="palList"></div>
+    <div class="pal-foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>Enter</kbd> open</span><span><kbd>Ctrl</kbd>+<kbd>Enter</kbd> new tab</span><span><kbd>Esc</kbd> close</span></div>
+  </div>
+</div>
+
+<!-- Slash menu -->
+<div id="slashMenu"></div>
+
+<!-- Graph -->
+<div id="graph" class="canvas">
+  <div class="canvas-bar">
+    <b>Graph view</b><span class="muted">drag to pan · scroll to zoom · click a page to open it</span>
+    <span class="grow"></span>
+    <label class="muted"><input type="checkbox" id="gLocal" /> Local only</label>
+    <label class="muted"><input type="checkbox" id="gTags" /> Show tags</label>
+    <button id="gFit">Fit</button>
+    <button class="icon" id="gClose" data-icon="x"></button>
+  </div>
+  <canvas id="gCanvas"></canvas>
+</div>
+
+<!-- Mermaid canvas -->
+<div id="canvas" class="canvas">
+  <div class="canvas-bar">
+    <b>Diagram canvas</b><span class="muted">drag to pan · scroll to zoom · double-click to fit</span>
+    <span class="grow"></span>
+    <button id="cvOut">−</button><span id="cvZoom">100%</span><button id="cvIn">+</button>
+    <button id="cvFit">Fit</button><button id="cvBg">Grid</button>
+    <button id="cvSvg">SVG</button><button id="cvPng">PNG</button><button id="cvCopy">Copy code</button>
+    <button class="icon" id="cvClose" data-icon="x"></button>
+  </div>
+  <div id="cvStage"><div id="cvInner"></div></div>
+</div>
+
+<div id="zenHint">Zen mode · drag the edges to resize · <kbd>Esc</kbd> to exit</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="themes.js"></script>
+<script src="scenes.js"></script>
+<script src="app.js"></script>
+<script src="vault.js"></script>
+<script src="personal.js"></script>
+<script src="split.js"></script>
+</body>
+</html>

@@ -1,0 +1,941 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-19T13:41:26.796Z",
+  "title": "Design System: Maddy MD",
+  "extensions": {
+    "colorMeta": {
+      "deep": {
+        "role": "neutral",
+        "displayName": "Deep Stock",
+        "cssVar": "--deep",
+        "canonical": "oklch(17.0% 0.045 283)",
+        "tonalRamp": [
+          "#0a0a14",
+          "#23233c",
+          "#41425d",
+          "#62637f",
+          "#8586a4",
+          "#a9abca",
+          "#d2d3e3",
+          "#ecedfe"
+        ]
+      },
+      "wing": {
+        "role": "neutral",
+        "displayName": "Wing Stock",
+        "cssVar": "--wing",
+        "canonical": "oklch(22.3% 0.050 280)",
+        "tonalRamp": [
+          "#090a16",
+          "#22233e",
+          "#3f4260",
+          "#606383",
+          "#8386a8",
+          "#a7abce",
+          "#d0d3e5",
+          "#ebedfe"
+        ]
+      },
+      "wing-ink": {
+        "role": "neutral",
+        "displayName": "Wing Ink",
+        "cssVar": "--wing-ink",
+        "canonical": "oklch(93.9% 0.015 278)",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#25262e",
+          "#43444d",
+          "#64656f",
+          "#878892",
+          "#abadb8",
+          "#d3d4d9",
+          "#edeef4"
+        ]
+      },
+      "wing-muted": {
+        "role": "neutral",
+        "displayName": "Wing Muted",
+        "cssVar": "--wing-muted",
+        "canonical": "oklch(70.4% 0.025 283)",
+        "tonalRamp": [
+          "#0a0b10",
+          "#252532",
+          "#434452",
+          "#646574",
+          "#878898",
+          "#abacbe",
+          "#d3d3dc",
+          "#edeef7"
+        ]
+      },
+      "wing-faint": {
+        "role": "neutral",
+        "displayName": "Wing Faint",
+        "cssVar": "--wing-faint",
+        "canonical": "oklch(69.0% 0.022 283)",
+        "tonalRamp": [
+          "#0a0b10",
+          "#252531",
+          "#434451",
+          "#646573",
+          "#878896",
+          "#abacbc",
+          "#d3d3db",
+          "#edeef6"
+        ]
+      },
+      "wing-line": {
+        "role": "neutral",
+        "displayName": "Wing Line (seam)",
+        "cssVar": "--wing-line",
+        "canonical": "oklch(33.1% 0.042 282)",
+        "tonalRamp": [
+          "#0a0a14",
+          "#23243b",
+          "#41425b",
+          "#62637e",
+          "#8586a3",
+          "#a9abc9",
+          "#d2d3e2",
+          "#ecedfd"
+        ]
+      },
+      "wing-hover": {
+        "role": "neutral",
+        "displayName": "Wing Hover",
+        "cssVar": "--wing-hover",
+        "canonical": "oklch(28.4% 0.046 281)",
+        "tonalRamp": [
+          "#090a15",
+          "#23243c",
+          "#41425d",
+          "#616380",
+          "#8486a5",
+          "#a8abcb",
+          "#d1d3e3",
+          "#ebedfe"
+        ]
+      },
+      "wing-press": {
+        "role": "neutral",
+        "displayName": "Wing Press",
+        "cssVar": "--wing-press",
+        "canonical": "oklch(32.3% 0.042 282)",
+        "tonalRamp": [
+          "#0a0a14",
+          "#23243b",
+          "#41425c",
+          "#62637e",
+          "#8486a3",
+          "#a9abc9",
+          "#d1d3e2",
+          "#ecedfd"
+        ]
+      },
+      "wing-sel": {
+        "role": "neutral",
+        "displayName": "Wing Selected",
+        "cssVar": "--wing-sel",
+        "canonical": "oklch(35.3% 0.017 24)",
+        "tonalRamp": [
+          "#0f0a09",
+          "#2e2322",
+          "#4e4241",
+          "#706261",
+          "#938584",
+          "#b9aaa9",
+          "#dad2d1",
+          "#f4ecec"
+        ]
+      },
+      "wing-accent": {
+        "role": "primary",
+        "displayName": "Wing Accent",
+        "cssVar": "--wing-accent",
+        "canonical": "oklch(82.1% 0.140 78)",
+        "tonalRamp": [
+          "#130900",
+          "#352200",
+          "#5c3f05",
+          "#855e10",
+          "#b37e09",
+          "#dea131",
+          "#eecfa0",
+          "#ffeccf"
+        ]
+      },
+      "wing-field": {
+        "role": "neutral",
+        "displayName": "Wing Field",
+        "cssVar": "--wing-field",
+        "canonical": "oklch(19.7% 0.040 280)",
+        "tonalRamp": [
+          "#090a13",
+          "#22243a",
+          "#40435a",
+          "#61647d",
+          "#8487a1",
+          "#a8acc7",
+          "#d1d3e2",
+          "#ebedfc"
+        ]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Sheet",
+        "cssVar": "--bg",
+        "canonical": "oklch(21.2% 0.020 276)",
+        "tonalRamp": [
+          "#0a0b0f",
+          "#242630",
+          "#424450",
+          "#636572",
+          "#858896",
+          "#aaadbb",
+          "#d2d4db",
+          "#eceef5"
+        ]
+      },
+      "sheet-ink": {
+        "role": "neutral",
+        "displayName": "Sheet Ink",
+        "cssVar": "--text",
+        "canonical": "oklch(92.6% 0.011 275)",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#25262c",
+          "#43454b",
+          "#64666d",
+          "#878990",
+          "#acadb5",
+          "#d3d4d8",
+          "#edeef2"
+        ]
+      },
+      "sheet-muted": {
+        "role": "neutral",
+        "displayName": "Sheet Muted",
+        "cssVar": "--muted",
+        "canonical": "oklch(69.4% 0.013 276)",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#24262d",
+          "#43454c",
+          "#64666e",
+          "#878991",
+          "#abadb7",
+          "#d3d4d9",
+          "#edeef3"
+        ]
+      },
+      "sheet-border": {
+        "role": "neutral",
+        "displayName": "Sheet Border",
+        "cssVar": "--border",
+        "canonical": "oklch(32.3% 0.018 276)",
+        "tonalRamp": [
+          "#0a0b0f",
+          "#24262f",
+          "#42444f",
+          "#636571",
+          "#868894",
+          "#abadba",
+          "#d2d4da",
+          "#edeef5"
+        ]
+      },
+      "sheet-border-strong": {
+        "role": "neutral",
+        "displayName": "Sheet Border Strong",
+        "cssVar": "--border-strong",
+        "canonical": "oklch(40.7% 0.017 277)",
+        "tonalRamp": [
+          "#0a0b0f",
+          "#24262f",
+          "#42444e",
+          "#636570",
+          "#868894",
+          "#abadb9",
+          "#d2d4da",
+          "#edeef4"
+        ]
+      },
+      "sheet-panel": {
+        "role": "neutral",
+        "displayName": "Sheet Panel",
+        "cssVar": "--panel",
+        "canonical": "oklch(25.0% 0.019 276)",
+        "tonalRamp": [
+          "#0a0b0f",
+          "#242630",
+          "#424450",
+          "#636571",
+          "#868895",
+          "#aaadba",
+          "#d2d4db",
+          "#eceef5"
+        ]
+      },
+      "sheet-panel2": {
+        "role": "neutral",
+        "displayName": "Sheet Panel 2",
+        "cssVar": "--panel2",
+        "canonical": "oklch(29.1% 0.017 275)",
+        "tonalRamp": [
+          "#0a0b0f",
+          "#24262f",
+          "#42444e",
+          "#636570",
+          "#868994",
+          "#abadb9",
+          "#d2d4da",
+          "#edeef4"
+        ]
+      },
+      "sheet-code": {
+        "role": "neutral",
+        "displayName": "Code Paper",
+        "cssVar": "--code",
+        "canonical": "oklch(27.1% 0.019 276)",
+        "tonalRamp": [
+          "#0a0b0f",
+          "#242630",
+          "#42444f",
+          "#636571",
+          "#868895",
+          "#aaadba",
+          "#d2d4db",
+          "#eceef5"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Sheet Accent",
+        "cssVar": "--accent",
+        "canonical": "oklch(82.1% 0.140 78)",
+        "tonalRamp": [
+          "#130900",
+          "#352200",
+          "#5c3f05",
+          "#855e10",
+          "#b37e09",
+          "#dea131",
+          "#eecfa0",
+          "#ffeccf"
+        ]
+      },
+      "accent-fill": {
+        "role": "primary",
+        "displayName": "Accent Fill",
+        "cssVar": "--accent-fill",
+        "canonical": "oklch(80.0% 0.140 78)",
+        "tonalRamp": [
+          "#130900",
+          "#352200",
+          "#5c3f06",
+          "#855e11",
+          "#b47d0c",
+          "#dea132",
+          "#eecfa1",
+          "#ffeccf"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Accent Ink",
+        "cssVar": "--accent-ink",
+        "canonical": "oklch(19.9% 0.029 78)",
+        "tonalRamp": [
+          "#0f0a05",
+          "#2e2516",
+          "#4e4333",
+          "#6f6454",
+          "#938776",
+          "#b8ac9a",
+          "#dad3ca",
+          "#f4ede4"
+        ]
+      },
+      "accent-soft": {
+        "role": "primary",
+        "displayName": "Accent Soft",
+        "cssVar": "--accent-soft",
+        "canonical": "oklch(30.7% 0.015 63)",
+        "tonalRamp": [
+          "#0d0b08",
+          "#2c251f",
+          "#4b433d",
+          "#6c645e",
+          "#908780",
+          "#b5aca5",
+          "#d8d3cf",
+          "#f2edea"
+        ]
+      },
+      "selection": {
+        "role": "primary",
+        "displayName": "Selection",
+        "cssVar": "--sel",
+        "canonical": "oklch(41.3% 0.045 77)",
+        "tonalRamp": [
+          "#100a03",
+          "#33230a",
+          "#534229",
+          "#756349",
+          "#99866b",
+          "#beab8f",
+          "#ddd3c4",
+          "#f7edde"
+        ]
+      },
+      "ok": {
+        "role": "secondary",
+        "displayName": "Ok",
+        "cssVar": "--ok",
+        "canonical": "oklch(78.0% 0.150 150)",
+        "tonalRamp": [
+          "#001003",
+          "#033012",
+          "#005423",
+          "#057b38",
+          "#31a256",
+          "#5dc87a",
+          "#b1e3bb",
+          "#cbfdd4"
+        ]
+      },
+      "warn": {
+        "role": "secondary",
+        "displayName": "Warn",
+        "cssVar": "--warn",
+        "canonical": "oklch(78.1% 0.150 75)",
+        "tonalRamp": [
+          "#140800",
+          "#362201",
+          "#5d3e09",
+          "#895b00",
+          "#b57c16",
+          "#e49e21",
+          "#f2ce9d",
+          "#feebd3"
+        ]
+      },
+      "err": {
+        "role": "secondary",
+        "displayName": "Err",
+        "cssVar": "--err",
+        "canonical": "oklch(78.0% 0.126 25)",
+        "tonalRamp": [
+          "#1f0001",
+          "#4e0207",
+          "#7b1f1f",
+          "#a24440",
+          "#ca6861",
+          "#f48d85",
+          "#fbc5bf",
+          "#fee9e7"
+        ]
+      },
+      "info": {
+        "role": "secondary",
+        "displayName": "Info",
+        "cssVar": "--info",
+        "canonical": "oklch(78.0% 0.116 245)",
+        "tonalRamp": [
+          "#000c1b",
+          "#022944",
+          "#004976",
+          "#1a6ba4",
+          "#448fcb",
+          "#6ab5f3",
+          "#b5d9f9",
+          "#e1f1ff"
+        ]
+      },
+      "note": {
+        "role": "secondary",
+        "displayName": "Note",
+        "cssVar": "--note",
+        "canonical": "oklch(78.0% 0.127 300)",
+        "tonalRamp": [
+          "#100321",
+          "#320b59",
+          "#51307d",
+          "#7252a3",
+          "#9676ca",
+          "#bb9bf2",
+          "#dacbf8",
+          "#f1ebff"
+        ]
+      },
+      "stage": {
+        "role": "neutral",
+        "displayName": "Stage",
+        "cssVar": "--stage",
+        "canonical": "oklch(27.1% 0.102 286)",
+        "tonalRamp": [
+          "#0a071f",
+          "#251a55",
+          "#423a78",
+          "#625c9d",
+          "#8480c4",
+          "#a8a4ec",
+          "#d1d0f5",
+          "#ededfe"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The page title on the sheet (h1.page-title). Size is in em of the reading size."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "h2 on the sheet."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "h3 on the sheet."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text on the sheet, in the reader-selectable --font."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Interface text at --t-md: tree rows, to-do text, drawer rows, breadcrumbs."
+      },
+      "label-sm": {
+        "displayName": "Label small",
+        "purpose": "Interface text at --t-sm: buttons, inputs, tabs, outline entries."
+      },
+      "label-xs": {
+        "displayName": "Label extra small",
+        "purpose": "Interface text at --t-xs: section labels, counts, status bar, badges."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "The editor, code blocks, inline code and kbd."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sheet",
+        "value": "0 1px 0 var(--shadow-soft), 0 18px 40px -14px var(--shadow)",
+        "purpose": "The reading sheet and the editor."
+      },
+      {
+        "name": "split-pane-body",
+        "value": "0 18px 40px -14px var(--shadow)",
+        "purpose": "Paper in a split pane."
+      },
+      {
+        "name": "menu",
+        "value": "0 2px 0 var(--shadow-soft), 0 24px 48px -14px var(--shadow)",
+        "purpose": "Command palette, context menu, popover, slash menu."
+      },
+      {
+        "name": "finish-bar",
+        "value": "0 2px 0 var(--shadow-soft), 0 18px 34px -10px var(--shadow)",
+        "purpose": "The bar that rises at the end of a page."
+      },
+      {
+        "name": "study-sign",
+        "value": "0 2px 0 var(--shadow-soft), 0 8px 16px -6px var(--shadow)",
+        "purpose": "The paper sign in the sidebar scene."
+      },
+      {
+        "name": "sticky-note",
+        "value": "0 1px 0 rgba(0,0,0,.08), 0 10px 18px -6px var(--shadow)",
+        "purpose": "A sticky note at rest."
+      },
+      {
+        "name": "sticky-note-lifted",
+        "value": "0 22px 34px -10px var(--shadow)",
+        "purpose": "A sticky note while dragged, with a -1.5deg rotation."
+      },
+      {
+        "name": "note-list-item",
+        "value": "0 2px 5px var(--shadow-soft)",
+        "purpose": "A note in the notes list."
+      },
+      {
+        "name": "resume-flag",
+        "value": "drop-shadow(0 3px 4px var(--shadow))",
+        "purpose": "Filter on the folded flag at the sheet edge."
+      },
+      {
+        "name": "scene-layer",
+        "value": "drop-shadow(0 -3px 6px rgba(10,6,30,.22))",
+        "purpose": "Filter on each ridge layer of the scene."
+      },
+      {
+        "name": "scene-sprite",
+        "value": "drop-shadow(0 4px 5px rgba(10,6,30,.26))",
+        "purpose": "Filter on each scene object and character."
+      },
+      {
+        "name": "slide-over-edge",
+        "value": "-24px 0 40px -18px var(--shadow)",
+        "purpose": "Customize and Sync drawers, and the right panel as a slide-over under 1100px."
+      },
+      {
+        "name": "shadow",
+        "value": "rgba(0,0,0,.5)",
+        "purpose": "--shadow for Orbit. rgba(0,0,0,.5) when the sheet or wing is dark, rgba(46,34,72,.22) when both are light."
+      },
+      {
+        "name": "shadow-soft",
+        "value": "rgba(0,0,0,.32)",
+        "purpose": "--shadow-soft for Orbit. rgba(0,0,0,.32) when the sheet or wing is dark, rgba(46,34,72,.12) when both are light."
+      }
+    ],
+    "motion": [
+      {
+        "name": "d1",
+        "value": "120ms",
+        "purpose": "Hover, press, colour and border changes."
+      },
+      {
+        "name": "d2",
+        "value": "180ms",
+        "purpose": "Chevron rotation, list item exit, pane fade."
+      },
+      {
+        "name": "d3",
+        "value": "260ms",
+        "purpose": "Entrances (sticky note, resume flag, finish bar) and progress width."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.23, 1, .32, 1)",
+        "purpose": "Default for transforms and entrances."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(.77, 0, .175, 1)",
+        "purpose": "Looping scene motion."
+      },
+      {
+        "name": "ease-drawer",
+        "value": "cubic-bezier(.32, .72, 0, 1)",
+        "purpose": "Drawer opening (320ms); closing is 200ms on ease-out."
+      },
+      {
+        "name": "press",
+        "value": "scale(.97)",
+        "purpose": "Every button while pressed."
+      },
+      {
+        "name": "pop-in",
+        "value": "140ms cubic-bezier(.23, 1, .32, 1) from scale(.97)",
+        "purpose": "Context menu and popover entrance."
+      },
+      {
+        "name": "scene-loops",
+        "value": "blink 5.6s, float 6s, twinkle 3.4s, hop 2.4s, spin 46s / 30s, aurora 12s",
+        "purpose": "Ambient scene animation. Stopped by Motion: reduced or off, prefers-reduced-motion, and a hidden window."
+      },
+      {
+        "name": "cheer",
+        "value": "900ms cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Characters hop once when a page is marked studied."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow-window",
+        "value": "1100px",
+        "purpose": "Below this the right panel becomes a slide-over and the stage spans the full width."
+      },
+      {
+        "name": "narrow-pane",
+        "value": "720px",
+        "purpose": "Container query on the reading pane: sheet padding and page title tighten."
+      }
+    ],
+    "radius": {
+      "base": "--radius: 10px (reader-adjustable 0 to 20px)",
+      "sm": "calc(var(--radius) * .6)",
+      "md": "var(--radius)",
+      "lg": "calc(var(--radius) * 1.4)"
+    },
+    "themes": [
+      {
+        "id": "orbit",
+        "name": "Orbit",
+        "blurb": "Deep space, one small astronaut",
+        "sheet": "dark",
+        "wing": "dark",
+        "characters": true
+      },
+      {
+        "id": "lofi",
+        "name": "Night Desk",
+        "blurb": "City lights and a sleeping cat",
+        "sheet": "dark",
+        "wing": "dark",
+        "characters": true
+      },
+      {
+        "id": "reef",
+        "name": "Deep Reef",
+        "blurb": "A whale and a reading octopus",
+        "sheet": "dark",
+        "wing": "dark",
+        "characters": true
+      },
+      {
+        "id": "camp",
+        "name": "Forest Camp",
+        "blurb": "Pines, a fire and a fox",
+        "sheet": "dark",
+        "wing": "dark",
+        "characters": true
+      },
+      {
+        "id": "desert",
+        "name": "Desert Dusk",
+        "blurb": "Mesas, cacti and a fennec",
+        "sheet": "dark",
+        "wing": "dark",
+        "characters": true
+      },
+      {
+        "id": "aurora",
+        "name": "Arctic Aurora",
+        "blurb": "Northern lights and a penguin",
+        "sheet": "dark",
+        "wing": "dark",
+        "characters": true
+      },
+      {
+        "id": "arcade",
+        "name": "Pixel Arcade",
+        "blurb": "Blocky hills and a slime",
+        "sheet": "dark",
+        "wing": "dark",
+        "characters": true
+      },
+      {
+        "id": "clouds",
+        "name": "Cloud Friends",
+        "blurb": "A sunny sky with faces",
+        "sheet": "light",
+        "wing": "light",
+        "characters": true
+      },
+      {
+        "id": "dino",
+        "name": "Dino Valley",
+        "blurb": "A volcano and a gentle giant",
+        "sheet": "light",
+        "wing": "light",
+        "characters": true
+      },
+      {
+        "id": "robo",
+        "name": "Robot Workshop",
+        "blurb": "Gears, bulbs and a helper bot",
+        "sheet": "light",
+        "wing": "light",
+        "characters": true
+      },
+      {
+        "id": "candy",
+        "name": "Candy Hills",
+        "blurb": "Frosted hills and a gummy bear",
+        "sheet": "light",
+        "wing": "light",
+        "characters": true
+      },
+      {
+        "id": "sakura",
+        "name": "Blossom Evening",
+        "blurb": "Falling petals and a shiba",
+        "sheet": "light",
+        "wing": "light",
+        "characters": true
+      },
+      {
+        "id": "monsters",
+        "name": "Monster Party",
+        "blurb": "Three fuzzy guests and bunting",
+        "sheet": "light",
+        "wing": "light",
+        "characters": true
+      },
+      {
+        "id": "paper",
+        "name": "Quiet Paper",
+        "blurb": "Plain layered paper, no characters",
+        "sheet": "light",
+        "wing": "light",
+        "characters": false
+      },
+      {
+        "id": "ink",
+        "name": "Quiet Ink",
+        "blurb": "Dark layered paper, no characters",
+        "sheet": "dark",
+        "wing": "dark",
+        "characters": false
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Default control on a wing: 30px, hairline border, wing-hover fill.",
+      "html": "<button class=\"ds-btn\">Export HTML</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 30px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--wing-line, #32334b); background: var(--wing-hover, #262740); color: var(--wing-ink, #e8eaf5); font: 500 12.5px/1.4 'Atkinson Hyperlegible Next Variable', 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif; white-space: nowrap; cursor: pointer; transition: background-color 120ms ease, border-color 120ms ease, transform 120ms cubic-bezier(.23, 1, .32, 1); } .ds-btn:hover { background: var(--wing-press, #303149); } .ds-btn:active { transform: scale(.97); } .ds-btn:focus-visible { outline: 2px solid var(--wing-accent, #f6b84d); outline-offset: 2px; }"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one filled action in a group, in accent fill with accent ink.",
+      "html": "<button class=\"ds-btn-primary\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 20V9M7 14l5-5 5 5M5 4h14\"/></svg> Push</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 30px; padding: 0 12px; border-radius: 6px; border: 1px solid transparent; background: var(--accent-fill, #efb146); color: var(--accent-ink, #1d1406); font: 600 12.5px/1.4 'Atkinson Hyperlegible Next Variable', 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif; white-space: nowrap; cursor: pointer; transition: transform 120ms cubic-bezier(.23, 1, .32, 1); } .ds-btn-primary:hover { filter: brightness(1.06); } .ds-btn-primary:active { transform: scale(.97); } .ds-btn-primary:focus-visible { outline: 2px solid var(--wing-accent, #f6b84d); outline-offset: 2px; }"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "button-icon",
+      "description": "Toolbar toggle: no fill at rest, wing-hover fill on hover.",
+      "html": "<button class=\"ds-btn-icon\" title=\"Star this page\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z\"/></svg></button>",
+      "css": ".ds-btn-icon { width: 30px; height: 30px; display: grid; place-items: center; border: 0; border-radius: 6px; background: none; color: var(--wing-muted, #9d9eaf); cursor: pointer; transition: background-color 120ms ease, color 120ms ease, transform 120ms cubic-bezier(.23, 1, .32, 1); } .ds-btn-icon:hover { background: var(--wing-hover, #262740); color: var(--wing-ink, #e8eaf5); } .ds-btn-icon:active { transform: scale(.97); } .ds-btn-icon:focus-visible { outline: 2px solid var(--wing-accent, #f6b84d); outline-offset: 2px; }"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Field on a wing: wing-field fill, hairline border that turns wing-accent on focus.",
+      "html": "<label class=\"ds-search\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-3.5-3.5\"/></svg><input placeholder=\"Search pages, text, #tags…\" /></label>",
+      "css": ".ds-search { display: flex; align-items: center; gap: 8px; width: 240px; height: 32px; padding: 0 10px; border-radius: 6px; background: var(--wing-field, #121327); border: 1px solid var(--wing-line, #32334b); color: var(--wing-muted, #9d9eaf); transition: border-color 120ms ease; } .ds-search:focus-within { border-color: var(--wing-accent, #f6b84d); } .ds-search input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: none; color: var(--wing-ink, #e8eaf5); font: 400 12.5px/1.4 'Atkinson Hyperlegible Next Variable', 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif; } .ds-search input::placeholder { color: var(--wing-muted, #9d9eaf); }"
+    },
+    {
+      "name": "Mode Switch",
+      "kind": "nav",
+      "refersTo": "segment-on",
+      "description": "Segmented control: a wing-field well, the selected segment in accent fill.",
+      "html": "<div class=\"ds-seg\"><button class=\"ds-seg-on\" title=\"Read\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z\"/><path d=\"M4 19a2 2 0 0 1 2-2h13\"/></svg></button><button title=\"Split\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M12 4v16\"/></svg></button><button title=\"Write\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15 4l5 5L9 20H4v-5z\"/><path d=\"m13 6 5 5\"/></svg></button></div>",
+      "css": ".ds-seg { display: inline-flex; align-items: center; height: 30px; padding: 2px; gap: 1px; border-radius: 6px; background: var(--wing-field, #121327); border: 1px solid var(--wing-line, #32334b); } .ds-seg button { width: 30px; height: 24px; display: grid; place-items: center; border: 0; border-radius: 4px; background: none; color: var(--wing-muted, #9d9eaf); cursor: pointer; transition: background-color 120ms ease, color 120ms ease, transform 120ms cubic-bezier(.23, 1, .32, 1); } .ds-seg button:hover { color: var(--wing-ink, #e8eaf5); } .ds-seg button:active { transform: scale(.97); } .ds-seg button:focus-visible { outline: 2px solid var(--wing-accent, #f6b84d); outline-offset: 2px; } .ds-seg button.ds-seg-on { background: var(--accent-fill, #efb146); color: var(--accent-ink, #1d1406); }"
+    },
+    {
+      "name": "Page Tree Rows",
+      "kind": "nav",
+      "refersTo": "tree-row",
+      "description": "Tree rows with the study marks: hollow is queued, half is studying, solid is studied.",
+      "html": "<div class=\"ds-tree\"><div class=\"ds-node\"><span>Roadmap</span><i class=\"ds-mk\"></i></div><div class=\"ds-node ds-node-active\"><span>Rendering spec</span><i class=\"ds-mk ds-mk-reading\"></i></div><div class=\"ds-node\"><span>Sync notes</span><i class=\"ds-mk ds-mk-done\"></i></div></div>",
+      "css": ".ds-tree { width: 240px; padding: 8px; background: var(--wing, #171832); } .ds-node { display: flex; align-items: center; gap: 7px; height: 30px; padding: 0 8px; border-radius: 6px; color: var(--wing-muted, #9d9eaf); font: 400 13.5px/1.4 'Atkinson Hyperlegible Next Variable', 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif; white-space: nowrap; cursor: pointer; transition: background-color 120ms ease, color 120ms ease; } .ds-node:hover { background: var(--wing-hover, #262740); color: var(--wing-ink, #e8eaf5); } .ds-node-active { background: var(--wing-sel, #443837); color: var(--wing-ink, #e8eaf5); font-weight: 600; } .ds-mk { margin-left: auto; width: 9px; height: 9px; flex: none; box-sizing: border-box; border-radius: 50%; border: 1.5px solid var(--wing-ink, #e8eaf5); } .ds-mk-reading { background: linear-gradient(90deg, var(--wing-ink, #e8eaf5) 50%, transparent 50%); } .ds-mk-done { background: var(--wing-ink, #e8eaf5); }"
+    },
+    {
+      "name": "Filter Chips",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Pill filters on a wing; the selected chip takes wing-sel.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip ds-chip-on\">All</button><button class=\"ds-chip\">Open</button><button class=\"ds-chip\">Done</button></div>",
+      "css": ".ds-chips { display: flex; gap: 4px; } .ds-chip { height: 24px; padding: 0 10px; border-radius: 999px; background: none; font: 400 11.5px/1 'Atkinson Hyperlegible Next Variable', 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif; color: var(--wing-muted, #9d9eaf); border: 1px solid var(--wing-line, #32334b); cursor: pointer; transition: background-color 120ms ease, color 120ms ease; } .ds-chip:hover { color: var(--wing-ink, #e8eaf5); } .ds-chip:focus-visible { outline: 2px solid var(--wing-accent, #f6b84d); outline-offset: 2px; } .ds-chip-on { background: var(--wing-sel, #443837); color: var(--wing-ink, #e8eaf5); border-color: transparent; }"
+    },
+    {
+      "name": "Reading Sheet",
+      "kind": "card",
+      "refersTo": "sheet",
+      "description": "The paper the document is read on: top corners rounded, sheet shadow, standing on the stage colour.",
+      "html": "<div class=\"ds-stage\"><article class=\"ds-sheet\"><h1>Rendering spec</h1><p>Paragraphs are set in the reading font at 16.5px with a 1.65 line height. <a href=\"#\">Links</a> take the sheet accent.</p></article></div>",
+      "css": ".ds-stage { padding: 28px 24px 0; background: var(--stage, #251a55); } .ds-sheet { max-width: 520px; margin: 0 auto; padding: 40px 44px 48px; border-radius: 14px 14px 0 0; background: var(--bg, #161822); color: var(--text, #e4e6ee); font: 400 16.5px/1.65 'Atkinson Hyperlegible Next Variable', 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif; box-shadow: 0 1px 0 var(--shadow-soft, rgba(0,0,0,.32)), 0 18px 40px -14px var(--shadow, rgba(0,0,0,.5)); } .ds-sheet h1 { margin: 0 0 .3em; font: 700 2.5em/1.18 'Bricolage Grotesque Variable', 'Atkinson Hyperlegible Next Variable', 'Segoe UI', sans-serif; letter-spacing: -.03em; } .ds-sheet p { margin: 0; } .ds-sheet a { color: var(--accent, #f6b84d); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; text-decoration-color: color-mix(in oklab, var(--accent, #f6b84d) 45%, transparent); transition: text-decoration-color 120ms ease; } .ds-sheet a:hover { text-decoration-color: currentColor; } .ds-sheet a:focus-visible { outline: 2px solid var(--accent, #f6b84d); outline-offset: 2px; }"
+    },
+    {
+      "name": "Outline Route",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "The outline as a line with stops; the section being read has its stop lit in wing accent.",
+      "html": "<nav class=\"ds-toc\"><a href=\"#\" class=\"ds-toc-l1\">Overview</a><a href=\"#\" class=\"ds-toc-active\">Rendering</a><a href=\"#\" class=\"ds-toc-l3\">Tables</a><a href=\"#\">Sync</a></nav>",
+      "css": ".ds-toc { position: relative; width: 220px; padding: 10px 14px 10px 32px; background: var(--wing, #171832); } .ds-toc::before { content: ''; position: absolute; left: 19px; top: 18px; bottom: 18px; width: 1.5px; background: var(--wing-line, #32334b); } .ds-toc a { position: relative; display: block; padding: 4px 6px; border-radius: 6px; color: var(--wing-muted, #9d9eaf); font: 400 12.5px/1.35 'Atkinson Hyperlegible Next Variable', 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif; text-decoration: none; transition: color 120ms ease, background-color 120ms ease; } .ds-toc a::before { content: ''; position: absolute; left: -16.5px; top: .72em; width: 7px; height: 7px; box-sizing: border-box; border-radius: 50%; background: var(--wing, #171832); border: 1.5px solid var(--wing-muted, #9d9eaf); } .ds-toc a.ds-toc-l1 { color: var(--wing-ink, #e8eaf5); font-weight: 600; } .ds-toc a.ds-toc-l3 { padding-left: 16px; } .ds-toc a.ds-toc-l3::before { width: 5px; height: 5px; left: -15.5px; } .ds-toc a:hover { color: var(--wing-ink, #e8eaf5); background: var(--wing-hover, #262740); } .ds-toc a:focus-visible { outline: 2px solid var(--wing-accent, #f6b84d); outline-offset: 2px; } .ds-toc a.ds-toc-active { color: var(--wing-ink, #e8eaf5); } .ds-toc a.ds-toc-active::before { background: var(--wing-accent, #f6b84d); border-color: var(--wing-accent, #f6b84d); }"
+    },
+    {
+      "name": "Menu",
+      "kind": "custom",
+      "refersTo": "menu",
+      "description": "Paper menu (context menu, popover, slash menu): sheet colours, hairline border, menu shadow.",
+      "html": "<div class=\"ds-menu\"><div class=\"ds-menu-item\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16z\"/></svg><span>Rename</span></div><div class=\"ds-menu-item\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z\"/></svg><span>Star this page</span></div><div class=\"ds-menu-sep\"></div><div class=\"ds-menu-item ds-menu-danger\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13\"/></svg><span>Delete</span></div></div>",
+      "css": ".ds-menu { width: 208px; padding: 5px; border-radius: 10px; background: var(--bg, #161822); color: var(--text, #e4e6ee); border: 1px solid var(--border, #31333d); box-shadow: 0 2px 0 var(--shadow-soft, rgba(0,0,0,.32)), 0 24px 48px -14px var(--shadow, rgba(0,0,0,.5)); } .ds-menu-item { display: flex; align-items: center; gap: 9px; min-height: 30px; padding: 0 12px; border-radius: 6px; font: 400 13.5px/1.4 'Atkinson Hyperlegible Next Variable', 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif; cursor: pointer; } .ds-menu-item svg { color: var(--muted, #9a9ca5); } .ds-menu-item:hover { background: var(--accent-soft, #352e28); } .ds-menu-danger, .ds-menu-danger svg { color: var(--err, #fe968e); } .ds-menu-sep { height: 1px; margin: 5px 6px; background: var(--border, #31333d); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Paper Theatre",
+    "overview": "The window is a shadow-box stage. Each theme is a cut-paper diorama behind the reading column, and the document is a sheet of paper standing in front of it. The shell panels are called wings: flat stock colour, divided from each other by one hairline. The reader picks a room in the Customize drawer and then reads; the theme changes the room and never the legibility of the text.\n\nThe system has two surfaces with separate token families. Wing tokens (`--deep`, `--wing`, `--wing-*`) colour the shell: tab strip, icon rail, page tree, document bar, right panel, drawers, status bar. Sheet tokens (`--bg`, `--text`, `--muted`, `--border`, `--panel`, `--accent`, ...) colour the paper: the reading sheet, the editor, menus, the command palette, popovers. A light sheet can sit inside a dark shell and the reverse, so a component must take all of its colours from one family, the family of the surface it sits on.\n\nDensity is desktop-app density: 30px controls, 30px tree rows, 13.5px interface text, 16.5px reading text at a 860px measure. Nothing decorative is added to the shell. The only pictures are the stage scene, the small scene at the foot of the page tree, and the theme thumbnails.",
+    "keyCharacteristics": [
+      "Two token families, wing and sheet, generated per theme by `themeTokens()` in `src/themes.js`. `ui.css` contains no theme colours.",
+      "Wings are flat and meet at a 1px seam in `--wing-line`.",
+      "Shadow marks paper lying on the stage: the sheet, the editor, sticky notes, menus, the finish bar, the study sign.",
+      "Study status is a 9px shape (hollow, half, solid), never a colour.",
+      "15 themes, each with a scene drawn in code from 11 paper stocks. 13 have original characters, 2 are plain layered paper.",
+      "Icons are one in-house 24px stroke set. Emoji appear only as page icons the reader chose for their own pages.",
+      "Motion uses three durations and three easing curves, and can be reduced or switched off."
+    ],
+    "rules": [
+      {
+        "name": "The Stock Rule",
+        "body": "A colour in the interface is a token written by `themeTokens()` or a `color-mix()` of two of those tokens. `ui.css` never names a theme and never holds a theme's hex value.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Papers Rule",
+        "body": "A component on a wing uses only `--wing-*` and `--deep`. A component on paper uses only the sheet family. Accent fill and accent ink are the only tokens shared by both.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Fill Rule",
+        "body": "`--accent-fill` is the only saturated fill in the shell. It marks the single selected or primary thing in a group: one segment, one primary button, one checked box.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Every number that changes in place (zoom percentage, counts, status bar, table cells, slider values, the resize tip) uses `font-variant-numeric: tabular-nums`.",
+        "section": "typography"
+      },
+      {
+        "name": "The Two Scales Rule",
+        "body": "Interface text uses the fixed `--t-*` pixel scale and never follows the reading size. Sheet text uses `em` of `--fs` and never uses `--t-*`.",
+        "section": "typography"
+      },
+      {
+        "name": "The Seam Rule",
+        "body": "Wings meet at one 1px line in `--wing-line` and nothing else: no shadow, no gap, no second border. The sidebar/main seam is the resize handle; it turns `--wing-accent` on hover.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Paper Rule",
+        "body": "A shadow means \"this is paper on the stage\". A control inside a wing never gets a shadow. Rings drawn with a zero-offset `box-shadow` (selected theme chip, the field being edited) are outlines, not elevation.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do take every colour from a token written by `themeTokens()`, or from a `color-mix()` of two of them.",
+      "Do keep a component on one paper: `--wing-*` and `--deep` in the shell, the sheet family on paper surfaces.",
+      "Do divide wings with one 1px `--wing-line` seam.",
+      "Do give a shadow only to paper on the stage, using a hard edge in `--shadow-soft` plus a negative-spread drop in `--shadow`.",
+      "Do show study status with the hollow, half and solid marks.",
+      "Do use `--r-sm`, `--r-md` and `--r-lg` so \"Corner roundness\" keeps working.",
+      "Do use `--d1`, `--d2`, `--d3` and the three easing tokens so \"Motion: off\" keeps working.",
+      "Do draw new icons on the 24px grid at a 1.8px stroke and add them to `ICON_PATHS`.",
+      "Do build characters from the shared face helpers and colour them only from the theme's `st` stocks.",
+      "Do put `tabular-nums` on any number that updates in place."
+    ],
+    "donts": [
+      "Don't hard-code a theme colour in `ui.css`.",
+      "Don't put a shadow on a control inside a wing, or add a second border or gap at a seam.",
+      "Don't signal study status with a colour.",
+      "Don't use emoji as interface icons. Emoji are allowed only as the page icon a reader picks for their own page.",
+      "Don't use existing franchise characters. Characters are original to Maddy MD.",
+      "Don't outline scene shapes or put gradients on scene objects. The sky is the only gradient in a scene.",
+      "Don't add a second saturated fill to the shell beside `--accent-fill`.",
+      "Don't let a theme change the reading text's contrast: sheet ink and sheet tone come from the fixed recipes in `themeTokens()`, not from the scene."
+    ]
+  }
+}
