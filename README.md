@@ -58,7 +58,7 @@ npm install
 npm run dev
 ```
 
-The site deploys to Vercel from the repository root; `vercel.json` points the build at `web/`.
+The site deploys to Vercel with **Root Directory** set to `web` (Vite preset); settings are in `web/vercel.json`.
 
 ## Formerly MarkLens
 
