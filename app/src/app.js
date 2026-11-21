@@ -6,7 +6,7 @@ const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = se
 const store = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
 
 const DEFAULTS = {
-  v: 2, theme: 'orbit', accent: '', sheetTone: 'auto', scene: 'full', chars: true, parallax: true, radius: 10, headColor: false, linkStyle: 'underline', bullet: 'disc', checkStyle: 'round',
+  v: 2, theme: 'graphite', accent: '', sheetTone: 'auto', scene: 'full', chars: true, parallax: true, radius: 10, headColor: false, linkStyle: 'underline', bullet: 'disc', checkStyle: 'round',
   edSize: 14, density: 'cozy', uiScale: 1, tabStyle: 'chrome', showCover: true, showProps: true, showRibbon: true,
   motion: 'full', speed: 1, smoothScroll: true, slash: true, dailyFolder: '', rightTab: 'outline', fontBody: 'var(--f-ui)', fontHead: 'var(--f-display)',
   fontCode: 'var(--f-mono)', size: 16.5, lh: 1.65, width: 860, para: 1, justify: false, numbered: false,
@@ -207,7 +207,7 @@ preview.addEventListener('click', async (e) => {
   if (a) {
     const href = a.getAttribute('href') || '';
     if (href.startsWith('#')) { e.preventDefault(); document.getElementById(decodeURIComponent(href.slice(1)))?.scrollIntoView({ behavior: 'smooth' }); return; }
-    if (!/^[a-z]+:/i.test(href) && /\.(md|markdown|txt)(#.*)?$/i.test(href) && state.file) {
+    if (!/^[a-z]+:/i.test(href) && /\.md(#.*)?$/i.test(href) && state.file) {
       e.preventDefault();
       const dir = state.file.slice(0, state.file.lastIndexOf(api.sep));
       const target = (dir + api.sep + decodeURIComponent(href.split('#')[0])).replace(/[\\/]/g, api.sep);
@@ -225,6 +225,7 @@ function toggleTask(idx, checked) {
 
 /* ---------------- Files & tree ---------------- */
 const isTxt = (p) => /\.txt$/i.test(p || '');
+const isMd = (p) => /\.md$/i.test(p || '');
 const relOf = (p) => (state.folder && p && p.startsWith(state.folder) ? p.slice(state.folder.length + 1) : p ? p.split(/[\\/]/).pop() : '');
 
 async function openFolder(dir, booting) {
@@ -232,6 +233,7 @@ async function openFolder(dir, booting) {
   if (state.folder && state.folder !== dir && window.closeAllTabs) closeAllTabs();
   state.folder = dir; store.set('ml-folder', dir);
   const nm = dir.split(/[\\/]/).pop();
+  syncEmpty();
   $('#folderName').textContent = dir; $('#vaultName').textContent = nm; $('#vaultIc').textContent = (nm[0] || 'M').toUpperCase();
   await refreshTree();
   api.watch(dir);
@@ -258,12 +260,20 @@ function drawTree() {
     const draw = (nodes) => nodes.map((n) => n.type === 'dir'
       ? `<div class="node dir" data-dir="${esc(n.path)}"><span class="ic chev${openDirs.has(n.path) ? ' open' : ''}">${icon('chevron', 13)}</span><span class="ic">${icon(openDirs.has(n.path) ? 'folderOpen' : 'folder', 15)}</span><span class="nm">${esc(n.name)}</span><span class="add" data-add="${esc(n.path)}" title="Add a page inside">＋</span></div><div class="children ${openDirs.has(n.path) ? '' : 'closed'}">${draw(n.children)}</div>`
       : nodeHtml(n, n.name)).join('');
-    tree.innerHTML = draw(state.tree) || '<div class="empty-side">No .md or .txt files here yet.<br>Click <b>＋ New</b> or paste something.</div>';
+    tree.innerHTML = draw(state.tree) || '<div class="empty-side">No .md files here yet.<br>Click <b>＋ New</b> or paste something.</div>';
   }
 }
-const nodeHtml = (f, label) => `<div class="node file ${f.path === state.file ? 'active' : ''}" data-file="${esc(f.path)}" title="${esc(f.rel)}"><span class="ic">${typeof noteOf === 'function' && noteOf(f.path)?.icon ? esc(noteOf(f.path).icon) : icon(isTxt(f.path) ? 'fileText' : 'file', 15)}</span><span class="nm">${esc(label.replace(/\.(md|markdown)$/i, ''))}</span></div>`;
+const nodeHtml = (f, label) => `<div class="node file ${f.path === state.file ? 'active' : ''}" data-file="${esc(f.path)}" title="${esc(f.rel)}"><span class="ic">${typeof noteOf === 'function' && noteOf(f.path)?.icon ? esc(noteOf(f.path).icon) : icon(isTxt(f.path) ? 'fileText' : 'file', 15)}</span><span class="nm">${esc(label.replace(/\.(md|markdown)$/i, ''))}</span><span class="more" data-more title="More actions">${icon('more', 15)}</span></div>`;
 
 $('#tree').addEventListener('click', (e) => {
+  /* the ⋯ button opens the same menu as a right-click on its row */
+  const more = e.target.closest('[data-more]');
+  if (more) {
+    e.stopImmediatePropagation();
+    const row = more.closest('.node'), r = more.getBoundingClientRect();
+    setTimeout(() => row.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, cancelable: true, clientX: r.left, clientY: r.bottom + 4 })));
+    return;
+  }
   const add = e.target.closest('[data-add]');
   if (add) { e.stopPropagation(); openDirs.add(add.dataset.add); newDoc(undefined, 'Untitled', add.dataset.add); return; }
   const d = e.target.closest('[data-dir]');
@@ -304,7 +314,7 @@ function renameInline(el) {
   nm.replaceWith(inp); inp.focus(); inp.setSelectionRange(0, name.lastIndexOf('.') > 0 ? name.lastIndexOf('.') : name.length);
   const done = async (ok) => {
     let v = inp.value.trim(); if (!ok || !v || v === name) return drawTree();
-    if (!/\.(md|markdown|txt)$/i.test(v)) v += '.md';
+    if (!isMd(v)) v += '.md';
     const np = p.slice(0, p.length - name.length) + v;
     if (await api.exists(np)) { toast('A file with that name exists'); return drawTree(); }
     await api.rename(p, np); window.migratePath && migratePath(p, np); if (state.file === p) { state.file = np; store.set('ml-file', np); updateCrumbs(); }
@@ -315,6 +325,7 @@ function renameInline(el) {
 }
 
 async function openFile(p, newTab) {
+  if (!isMd(p)) { toast('Only .md files are supported'); return; }
   if (state.dirty) await save();
   let text;
   try { text = await api.read(p); } catch { toast('That file could not be opened. It may have been moved or deleted.'); if (window.closeTab) closeTab(p, true); return; }
@@ -334,7 +345,9 @@ async function openFile(p, newTab) {
 }
 function closeDoc() { state.file = null; state.text = ''; editor.value = ''; showWelcome(); updateCrumbs(); setDirty(false); }
 function showWelcome() { preview.innerHTML = $('#welcomeTpl').innerHTML; hydrateIcons(preview); $('#tocList').innerHTML = ''; updateStats(''); }
+function syncEmpty() { document.body.classList.toggle('no-vault', !state.folder); document.body.classList.toggle('no-doc', !state.file && !state.untitled); }
 function updateCrumbs() {
+  syncEmpty();
   const rel = state.file ? relOf(state.file) : state.untitled ? 'Untitled (unsaved)' : 'No document';
   $('#crumbs').innerHTML = rel.split(/[\\/]/).map(esc).join('<span class="sep">/</span>');
   $('#stFile').textContent = state.file ? (isTxt(state.file) ? 'Plain text · rendered as Markdown' : 'Markdown') : '';
@@ -448,7 +461,7 @@ function applyClasses() {
   b.className = [`mode-${S.mode}`, !S.showToc && 'no-toc', !S.showSide && 'no-side', S.focus && 'focus', S.justify && 'justify', S.numbered && 'numbered',
     S.headLine && 'headline', `code-${S.codeStyle}`, `tbl-${S.tableStyle}`, !S.wrap && 'nowrap', S.headColor && 'headcolor', `link-${S.linkStyle}`, `bullet-${S.bullet}`,
     `check-${S.checkStyle}`, `dens-${S.density}`, `tabs-${S.tabStyle}`, !S.showCover && 'no-cover', !S.showProps && 'no-props', !S.showRibbon && 'no-ribbon',
-    `motion-${S.motion}`, S.smoothScroll && 'smooth-scroll', S.scene === 'off' && 'scene-none', ...keep].filter(Boolean).join(' ');
+    `motion-${S.motion}`, S.smoothScroll && 'smooth-scroll', 'scene-none', !state.folder && 'no-vault', !state.file && !state.untitled && 'no-doc', ...keep].filter(Boolean).join(' ');
 }
 function applySettings(rerender = true) {
   const r = document.documentElement;
@@ -474,7 +487,7 @@ const bindings = { fontBody: 'value', fontHead: 'value', fontCode: 'value', size
   showToc: 'checked', showSide: 'checked', focus: 'checked', syncScroll: 'checked', codeStyle: 'value', tableStyle: 'value', allowHtml: 'checked', pasteConvert: 'checked',
   autosave: 'checked', wrap: 'checked', mermaidTheme: 'value', autoPush: 'checked', radius: 'num', headColor: 'checked', linkStyle: 'value', bullet: 'value', checkStyle: 'value',
   edSize: 'num', density: 'value', uiScale: 'num', tabStyle: 'value', showCover: 'checked', showProps: 'checked', showRibbon: 'checked', motion: 'value', smoothScroll: 'checked',
-  slash: 'checked', dailyFolder: 'value', scene: 'value', chars: 'checked', parallax: 'checked', sheetTone: 'value' };
+  slash: 'checked', dailyFolder: 'value', sheetTone: 'value' };
 for (const [k, kind] of Object.entries(bindings)) {
   const el = $('#' + k); if (!el) continue;
   if (kind === 'checked') el.checked = S[k]; else el.value = S[k];
@@ -591,6 +604,7 @@ $('#pull').onclick = () => doSync('pull');
 /* ---------------- Toolbar / keys / dnd ---------------- */
 const pickFolder = async () => openFolder(await api.pickFolder());
 $('#openFolder').onclick = pickFolder;
+$('#sideOpen').onclick = pickFolder;
 $('#newFile').onclick = () => newDoc();
 $('#pasteNew').onclick = pasteAsDoc;
 $('#openFile').onclick = async () => { const p = await api.pickFile(); if (p) openFile(p); };
@@ -620,7 +634,7 @@ document.addEventListener('dragover', (e) => e.preventDefault());
 document.addEventListener('drop', (e) => {
   e.preventDefault(); const f = e.dataTransfer.files[0]; if (!f) return;
   const p = api.pathFor(f); if (!p) return;
-  if (/\.(md|markdown|txt)$/i.test(p)) openFile(p); else if (!/\.\w{1,5}$/.test(p)) openFolder(p); else toast('Only .md and .txt files are supported');
+  if (isMd(p)) openFile(p); else if (!/\.\w{1,5}$/.test(p)) openFolder(p); else toast('Only .md files are supported');
 });
 
 // sidebar resize
@@ -647,8 +661,8 @@ window.addEventListener('DOMContentLoaded', async function boot() {
   applySettings(false);
   setMode(S.mode);
   showWelcome(); updateCrumbs(); updateSyncPanel();
-  let f = store.get('ml-folder', null);
-  if (!f || !(await api.exists(f))) f = await api.defaultVault();
+  /* nothing opens by default: only a folder the person chose before is reopened */
+  const f = store.get('ml-folder', null);
   if (f && (await api.exists(f))) await openFolder(f, true);
   if (window.restoreTabs) await restoreTabs();
 });

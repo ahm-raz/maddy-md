@@ -1,3 +1,0 @@
-Plain text notes
-.txt files open too, with line breaks preserved.
-- they still get **markdown** styling if you use it

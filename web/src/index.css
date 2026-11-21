@@ -1,17 +1,17 @@
-/* Maddy MD site. Colours follow the app's default Orbit theme ("the paper theatre"). */
+/* Maddy MD site. Flat neutral greys like the app's default Graphite theme, with an amber accent. */
 
 :root {
-  --deep: #0d0c22;
-  --wing: #171832;
-  --wing-2: #1e1f3d;
-  --ink: #e8eaf5;
-  --muted: #a3a4b8;
-  --line: #32334b;
+  --deep: #0e0f12;
+  --wing: #16171b;
+  --wing-2: #1e1f24;
+  --ink: #e9eaee;
+  --muted: #a4a6af;
+  --line: #2c2e34;
   --accent: #f6b84d;
   --accent-fill: #efb146;
   --accent-ink: #1d1406;
   --link: #f6c46d;
-  --sheet: #161822;
+  --sheet: #17181c;
   --shadow: rgba(0, 0, 0, 0.5);
   --shadow-soft: rgba(0, 0, 0, 0.32);
   --f-ui: 'Atkinson Hyperlegible Next Variable', 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
@@ -26,16 +26,16 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --deep: #efedf6;
-    --wing: #fbfaff;
-    --wing-2: #f4f2fb;
-    --ink: #1f2036;
-    --muted: #55566c;
-    --line: #dcdae8;
+    --deep: #f1f1f3;
+    --wing: #ffffff;
+    --wing-2: #f6f6f8;
+    --ink: #1d1e22;
+    --muted: #575963;
+    --line: #dddee3;
     --link: #8a5300;
     --sheet: #ffffff;
-    --shadow: rgba(46, 34, 72, 0.22);
-    --shadow-soft: rgba(46, 34, 72, 0.12);
+    --shadow: rgba(20, 22, 28, 0.18);
+    --shadow-soft: rgba(20, 22, 28, 0.1);
     color-scheme: light;
   }
 }
@@ -192,50 +192,9 @@ p {
   position: relative;
   isolation: isolate;
   padding: 84px 0 0;
-  color: #eceefa;
+  color: #eceef2;
   --link: #f6c46d;
-}
-
-.scene {
-  position: absolute;
-  inset: 0 0 auto 0;
-  width: 100%;
-  height: 620px;
-  z-index: -1;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 620px 0 120px 0;
-  background: #1a1640;
-  z-index: -1;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 120px;
-  background: var(--deep);
-  z-index: -1;
-}
-
-.twinkle {
-  animation: twinkle 3.4s ease-in-out infinite;
-}
-@keyframes twinkle {
-  50% {
-    opacity: 0.15;
-  }
-}
-.planet {
-  animation: float 6s ease-in-out infinite;
-}
-@keyframes float {
-  50% {
-    transform: translateY(9px);
-  }
+  background: linear-gradient(#0e0f12 0 calc(100% - 120px), var(--deep) calc(100% - 120px));
 }
 
 .hero-in {
@@ -269,7 +228,7 @@ p {
   margin: 22px auto 0;
   max-width: 640px;
   font-size: clamp(17px, 2.2vw, 19.5px);
-  color: #c9cbe0;
+  color: #c4c6ce;
 }
 .lede code {
   background: rgba(255, 255, 255, 0.1);
@@ -292,7 +251,7 @@ p {
   border-radius: var(--r-md);
   font: 600 16px/1 var(--f-ui);
   text-decoration: none;
-  color: #eceefa;
+  color: #eceef2;
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.18);
   transition: transform 120ms var(--ease-out), filter 120ms, background-color 120ms;
@@ -316,7 +275,7 @@ p {
 .meta {
   margin: 16px 0 0;
   font-size: 14px;
-  color: #a9abc6;
+  color: #a4a6af;
 }
 .meta.center {
   text-align: center;
@@ -454,12 +413,12 @@ p {
 .themes-shot figcaption {
   padding: 12px 16px;
   font-size: 15px;
-  color: #a9abc6;
-  background: #11132a;
+  color: #a4a6af;
+  background: #121317;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 .themes-shot figcaption b {
-  color: #eceefa;
+  color: #eceef2;
 }
 
 .theme-list {
@@ -705,15 +664,6 @@ p {
   }
   .hero {
     padding-top: 56px;
-  }
-  .scene {
-    height: 560px;
-  }
-  .hero::after {
-    inset: 560px 0 48px 0;
-  }
-  .hero::before {
-    height: 48px;
   }
   .hero-shot {
     margin-top: 40px;

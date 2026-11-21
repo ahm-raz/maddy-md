@@ -1,5 +1,6 @@
 /* Maddy MD icon set: 24px stroke icons (lucide-style geometry, drawn for Maddy MD) */
 const ICON_PATHS = {
+  more: '<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>',
   files: '<path d="M4 4h6l2 2h8v12a2 2 0 0 1-2 2H4z"/>',
   search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
   graph: '<circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="8" r="2.5"/><circle cx="9" cy="18" r="2.5"/><path d="M8.2 7.2 15.6 8M7 8.3l1.4 7.4M16.5 10 10.8 16.3"/>',

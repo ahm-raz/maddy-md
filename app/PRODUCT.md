@@ -1,5 +1,8 @@
 # Product
 
+> **1.1.0 redesign (2026-11-21), overrides the rest of this file where they disagree:** the scenes, characters, stage art and page covers were removed. There are 12 single-colour themes (each one hue for the shell, the sheet and the accent, built by `mono()` in `src/themes.js`); `src/scenes.js` no longer exists. The app opens empty with no folder, starts every file dialog on the Desktop, and reads and writes only `.md` files.
+
+
 <!-- impeccable:product-schema 1 -->
 
 > Facts marked *(inferred)* were taken from the build conversation and the code, not from a product interview. The owner asked for the redesign to proceed without stopping for questions.

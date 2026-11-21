@@ -1,13 +1,13 @@
 # Maddy MD Setup Guide
 
-Maddy MD is a Windows desktop app for reading and writing folders of Markdown (`.md`) and text (`.txt`) files. This guide covers installing it, the first run, cloud sync, and building it from the source code.
+Maddy MD is a Windows desktop app for reading and writing folders of Markdown (`.md`) files. This guide covers installing it, the first run, cloud sync, and building it from the source code.
 
 ## What you can download
 
 | Item | What it is |
 |---|---|
-| `Maddy-MD-Setup-1.0.0.exe` | Installer. Adds desktop and Start menu shortcuts. |
-| `Maddy-MD-Portable-1.0.0.exe` | Runs without installing. Good for a USB stick. |
+| `Maddy-MD-Setup-1.1.0.exe` | Installer. Adds desktop and Start menu shortcuts. |
+| `Maddy-MD-Portable-1.1.0.exe` | Runs without installing. Good for a USB stick. |
 | `app\` (in the GitHub repository) | The full source code. Only needed if you want to change or rebuild the app. |
 
 You need Windows 10 or 11 (64-bit). Nothing else has to be installed to run the app.
@@ -18,13 +18,13 @@ Pick one of the two.
 
 **Installer (recommended)**
 
-1. Double-click `Maddy-MD-Setup-1.0.0.exe`.
+1. Double-click `Maddy-MD-Setup-1.1.0.exe`.
 2. If Windows shows "Windows protected your PC", click **More info**, then **Run anyway**. This appears because the app is not code-signed, not because anything is wrong with it.
 3. Choose the install folder and finish. Open Maddy MD from the desktop or Start menu shortcut.
 
 **Portable**
 
-1. Copy `Maddy-MD-Portable-1.0.0.exe` anywhere you like.
+1. Copy `Maddy-MD-Portable-1.1.0.exe` anywhere you like.
 2. Double-click it. The same SmartScreen note applies the first time.
 3. It takes a few seconds longer to start than the installed version.
 
@@ -32,11 +32,13 @@ To update later, run a newer Setup file over the old install, or replace the por
 
 ## 2. First run
 
-1. On first launch Maddy MD creates a sample folder at `Documents\Maddy MD Vault` and opens it, so you have something to look at.
-2. To use your own notes, click **Open folder** at the top of the left sidebar (or press `Ctrl+Shift+O`) and choose any folder that contains `.md` or `.txt` files.
+1. Maddy MD starts empty: no folder is open and nothing is created on your PC.
+2. Click **Open Folder** in the sidebar or in the middle of the window (or press `Ctrl+Shift+O`). The folder picker starts on your Desktop. Choose any folder that contains `.md` files.
 3. Click a page in the sidebar to read it.
 
-Maddy MD only reads and writes `.md`, `.markdown` and `.txt` files. It never changes anything else in the folder.
+Maddy MD only reads and writes `.md` files. Other files in the folder are not shown and are never changed.
+
+Next time you start the app, it reopens the folder you used last.
 
 ### Reading and writing
 
@@ -48,7 +50,7 @@ Maddy MD only reads and writes `.md`, `.markdown` and `.txt` files. It never cha
 
 ### Choosing a theme
 
-Press `Ctrl+,` to open **Customize**. The **Look** tab has 15 themes, each with its own scene. You can also dim or turn off the scene, hide the characters, switch the page between light and dark paper, and change fonts, text size and page width.
+Press `Ctrl+,` to open **Customize**. The **Look** tab has 12 single-colour themes: Graphite, Midnight, Ocean, Forest, Plum, Ember and Crimson (dark), and Paper, Sky, Mint, Sand and Lilac (light). You can also switch the page between light and dark paper, pick an accent colour, and change fonts, text size and page width.
 
 ### Shortcuts worth knowing
 
@@ -126,8 +128,7 @@ They are written to `app\dist\`. The first build downloads extra tools and takes
 | `src\vault.js` | Links, tabs, palette, graph, Zen mode |
 | `src\personal.js` | To-do, study list, sticky notes |
 | `src\split.js` | Split views |
-| `src\themes.js` | The 15 themes and their colours |
-| `src\scenes.js` | The scene artwork and characters |
+| `src\themes.js` | The 12 themes and their colours |
 | `DESIGN.md` | Design rules, including how to add a theme |
 
 ## 5. Where your data is kept
@@ -150,7 +151,6 @@ Your notes are never deleted by uninstalling.
 | Problem | What to do |
 |---|---|
 | "Windows protected your PC" | Click **More info**, then **Run anyway**. |
-| Sidebar is empty | The folder has no `.md` or `.txt` files. Open a different folder or press `Ctrl+N` to make a page. |
+| Sidebar is empty | The folder has no `.md` files. Open a different folder or press `Ctrl+N` to make a page. |
 | Sync says it failed | Open the cloud panel and read the log at the bottom. The usual cause is an expired token or one made without the **gist** scope. |
 | Text is too small or too large | `Ctrl` with `+` or `-`, or Customize, Type, Text size. |
-| The scene is distracting | Customize, Look, Scene, then choose "Calm" or "Plain colour". |

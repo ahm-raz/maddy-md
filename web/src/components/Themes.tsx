@@ -1,27 +1,24 @@
 import { useState } from 'react'
 
 const THEMES = [
-  { id: 'orbit', name: 'Orbit', blurb: 'Deep space, one small astronaut' },
-  { id: 'lofi', name: 'Night Desk', blurb: 'City lights and a sleeping cat' },
-  { id: 'reef', name: 'Deep Reef', blurb: 'A whale and a reading octopus' },
-  { id: 'camp', name: 'Forest Camp', blurb: 'Pines, a fire and a fox' },
-  { id: 'desert', name: 'Desert Dusk', blurb: 'Mesas, cacti and a fennec' },
-  { id: 'aurora', name: 'Arctic Aurora', blurb: 'Northern lights and a penguin' },
-  { id: 'arcade', name: 'Pixel Arcade', blurb: 'Blocky hills and a slime' },
-  { id: 'clouds', name: 'Cloud Friends', blurb: 'A sunny sky with faces' },
-  { id: 'dino', name: 'Dino Valley', blurb: 'A volcano and a gentle giant' },
-  { id: 'robo', name: 'Robot Workshop', blurb: 'Gears, bulbs and a helper bot' },
-  { id: 'candy', name: 'Candy Hills', blurb: 'Frosted hills and a gummy bear' },
-  { id: 'sakura', name: 'Blossom Evening', blurb: 'Falling petals and a shiba' },
-  { id: 'monsters', name: 'Monster Party', blurb: 'Three fuzzy guests and bunting' },
-  { id: 'paper', name: 'Quiet Paper', blurb: 'Plain layered paper, no characters' },
-  { id: 'ink', name: 'Quiet Ink', blurb: 'Dark layered paper, no characters' },
+  { id: 'graphite', name: 'Graphite', blurb: 'Neutral dark grey' },
+  { id: 'midnight', name: 'Midnight', blurb: 'Deep blue' },
+  { id: 'ocean', name: 'Ocean', blurb: 'Dark teal' },
+  { id: 'forest', name: 'Forest', blurb: 'Dark green' },
+  { id: 'plum', name: 'Plum', blurb: 'Dark purple' },
+  { id: 'ember', name: 'Ember', blurb: 'Dark amber' },
+  { id: 'crimson', name: 'Crimson', blurb: 'Dark red' },
+  { id: 'paper', name: 'Paper', blurb: 'Neutral light grey' },
+  { id: 'sky', name: 'Sky', blurb: 'Light blue' },
+  { id: 'mint', name: 'Mint', blurb: 'Light green' },
+  { id: 'sand', name: 'Sand', blurb: 'Light warm beige' },
+  { id: 'lilac', name: 'Lilac', blurb: 'Light purple' },
 ] as const
 
 const shot = (id: string) => `/shots/${id}.webp`
 
 export function Themes() {
-  const [current, setCurrent] = useState<string>('reef')
+  const [current, setCurrent] = useState<string>('graphite')
   const theme = THEMES.find((t) => t.id === current) ?? THEMES[0]
 
   const preload = (id: string) => {
