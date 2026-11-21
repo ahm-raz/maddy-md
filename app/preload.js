@@ -60,6 +60,5 @@ contextBridge.exposeInMainWorld('api', {
   copy: (t) => clipboard.writeText(t),
   pathFor: (file) => { try { return webUtils.getPathForFile(file); } catch { return null; } },
   cssText: () => fs.readFileSync(path.join(__dirname, 'src', 'ui.css'), 'utf8'),
-  defaultVault: () => inv('default-vault'),
   sep: process.platform === 'win32' ? '\\' : '/',
 });

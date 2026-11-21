@@ -1,7 +1,7 @@
 {
   "name": "maddy-md",
   "productName": "Maddy MD",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A reading room for folders of Markdown and text files: themes, Mermaid, tabs, graph view and Gist sync",
   "main": "main.js",
   "author": "ahm-raz",
@@ -38,9 +38,6 @@
       "main.js",
       "preload.js",
       "src/**/*",
-      "demo/Welcome.md",
-      "demo/Project Atlas.md",
-      "demo/notes/**/*",
       "build/icon.png",
       "node_modules/**/*"
     ],
@@ -65,11 +62,6 @@
     "fileAssociations": [
       {
         "ext": "md",
-        "name": "Markdown",
-        "role": "Editor"
-      },
-      {
-        "ext": "markdown",
         "name": "Markdown",
         "role": "Editor"
       }

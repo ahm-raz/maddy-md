@@ -1,5 +1,4 @@
 import { Mark } from './components/Mark.tsx'
-import { Scene } from './components/Scene.tsx'
 import { Themes } from './components/Themes.tsx'
 import { DOWNLOADS, RELEASES, REPO, VERSION } from './config.ts'
 
@@ -103,15 +102,13 @@ export default function App() {
 
       <main id="main">
         <section className="hero" id="top">
-          <Scene />
           <div className="wrap hero-in">
             <p className="eyebrow">Free Markdown reader for Windows</p>
             <h1>
               A reading room for your <span className="hl">Markdown</span>.
             </h1>
             <p className="lede">
-              Maddy MD opens any folder of <code>.md</code> and <code>.txt</code> files and makes them a pleasure to read, study and
-              write. Your files stay plain. Everything else stays out of them.
+              Maddy MD opens any folder of <code>.md</code> files and makes them a pleasure to read, study and write. Your files stay plain. Everything else stays out of them.
             </p>
             <div className="cta">
               <a className="btn primary" href={DOWNLOADS.setup}>
@@ -129,11 +126,11 @@ export default function App() {
           <div className="wrap">
             <figure className="frame hero-shot">
               <img
-                src="/shots/orbit.webp"
+                src="/shots/midnight.webp"
                 width={1366}
                 height={768}
                 fetchPriority="high"
-                alt="Maddy MD showing a project page on the Orbit theme, with the page tree on the left and an outline on the right."
+                alt="Maddy MD showing a project page on the Midnight theme, with the page tree on the left and an outline on the right."
               />
             </figure>
           </div>
@@ -150,7 +147,7 @@ export default function App() {
               <span>analytics or tracking</span>
             </div>
             <div>
-              <b>15</b>
+              <b>12</b>
               <span>built-in themes</span>
             </div>
             <div>
@@ -189,8 +186,8 @@ export default function App() {
           <div className="wrap">
             <h2>Pick the room. The page stays readable.</h2>
             <p className="sub">
-              Fifteen cut-paper scenes, from deep space to a quiet sheet of paper. A theme changes the room around the text, never
-              its contrast. Turn the scene down to calm, or off.
+              Twelve single-colour themes, seven dark and five light. Each one tints the whole window with one hue, so nothing
+              competes with the text, and every theme keeps the page comfortably readable.
             </p>
             <Themes />
           </div>
@@ -201,8 +198,8 @@ export default function App() {
             <div>
               <h2>Plain files stay plain.</h2>
               <p className="sub">
-                Maddy MD reads and writes only <code>.md</code>, <code>.markdown</code> and <code>.txt</code>. It never touches anything else in
-                the folder, and your notes work in any other editor.
+                Maddy MD reads and writes only <code>.md</code> files. It never shows or touches anything else in the folder, and
+                your notes work in any other editor.
               </p>
               <ul className="ticks">
                 <li>
@@ -259,11 +256,11 @@ export default function App() {
                 is not code-signed yet; the source is public on GitHub.
               </li>
               <li>
-                <b>Look around.</b> The first launch creates a sample folder, <code>Documents\Maddy MD Vault</code>, so there is something to
-                read.
+                <b>Open a folder.</b> The app starts empty. Click <i>Open Folder</i>; the picker starts on your Desktop. Choose any folder
+                of <code>.md</code> files.
               </li>
               <li>
-                <b>Open your notes.</b> Press <Kbd k="Ctrl+Shift+O" /> and choose any folder with Markdown or text files.
+                <b>Start writing.</b> Press <Kbd k="Ctrl+N" /> for a new page, or pick one from the sidebar.
               </li>
             </ol>
             <p className="meta center">

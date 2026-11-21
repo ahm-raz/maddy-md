@@ -3,7 +3,8 @@ const path = require('path');
 const fs = require('fs');
 const fsp = fs.promises;
 
-const EXT = new Set(['.md', '.markdown', '.txt']);
+const EXT = new Set(['.md']);
+const HOME = () => app.getPath('desktop');
 let win, watcher, watchTimer;
 if (process.env.ML_SHOT) app.setPath('userData', path.join(require('os').tmpdir(), 'ml-test-profile'));
 /* The app was called MarkLens before 1.0.0 shipped as Maddy MD. Carry its settings over once. */
@@ -57,11 +58,11 @@ async function walk(dir, base = dir) {
 function flat(tree, acc = []) { for (const n of tree) n.type === 'dir' ? flat(n.children, acc) : acc.push(n); return acc; }
 
 ipcMain.handle('pick-folder', async () => {
-  const r = await dialog.showOpenDialog(win, { properties: ['openDirectory'] });
+  const r = await dialog.showOpenDialog(win, { defaultPath: HOME(), properties: ['openDirectory'] });
   return r.canceled ? null : r.filePaths[0];
 });
 ipcMain.handle('pick-file', async () => {
-  const r = await dialog.showOpenDialog(win, { properties: ['openFile'], filters: [{ name: 'Markdown / Text', extensions: ['md', 'markdown', 'txt'] }] });
+  const r = await dialog.showOpenDialog(win, { defaultPath: HOME(), properties: ['openFile'], filters: [{ name: 'Markdown', extensions: ['md'] }] });
   return r.canceled ? null : r.filePaths[0];
 });
 ipcMain.handle('list', async (_e, dir) => walk(dir));
@@ -82,21 +83,6 @@ ipcMain.handle('find-asset', async (_e, dir, name) => {
   }
   return go(dir, 0);
 });
-ipcMain.handle('default-vault', async () => {
-  if (process.env.ML_SHOT) return path.join(__dirname, 'demo');
-  const dir = path.join(app.getPath('documents'), 'Maddy MD Vault');
-  if (!fs.existsSync(dir)) {
-    const copy = (from, to) => {
-      fs.mkdirSync(to, { recursive: true });
-      for (const e of fs.readdirSync(from, { withFileTypes: true })) {
-        const s = path.join(from, e.name), d = path.join(to, e.name);
-        if (e.isDirectory()) copy(s, d); else fs.writeFileSync(d, fs.readFileSync(s));
-      }
-    };
-    try { copy(path.join(__dirname, 'demo'), dir); } catch { fs.mkdirSync(dir, { recursive: true }); }
-  }
-  return dir;
-});
 ipcMain.handle('mkdir', async (_e, p) => { await fsp.mkdir(p, { recursive: true }); return true; });
 ipcMain.handle('read',async (_e, p) => fsp.readFile(p, 'utf8'));
 ipcMain.handle('write', async (_e, p, c) => { await fsp.mkdir(path.dirname(p), { recursive: true }); await fsp.writeFile(p, c, 'utf8'); return true; });
@@ -108,7 +94,7 @@ ipcMain.handle('fullscreen', (_e, on) => { win.setFullScreen(!!on); return win.i
 ipcMain.handle('shot', async (_e, p) => { if (!process.env.ML_SHOT) return false; win.webContents.invalidate(); await win.capturePage(); await new Promise((r) => setTimeout(r, 180)); win.webContents.invalidate(); fs.writeFileSync(p, (await win.capturePage()).toPNG()); return true; });
 ipcMain.handle('titlebar', (_e, color, symbol) => { try { win.setTitleBarOverlay({ color, symbolColor: symbol }); } catch {} });
 ipcMain.handle('save-dialog', async (_e, name, ext) => {
-  const r = await dialog.showSaveDialog(win, { defaultPath: name, filters: [{ name: ext.toUpperCase(), extensions: [ext] }] });
+  const r = await dialog.showSaveDialog(win, { defaultPath: path.isAbsolute(name) ? name : path.join(HOME(), name), filters: [{ name: ext.toUpperCase(), extensions: [ext] }] });
   return r.canceled ? null : r.filePath;
 });
 ipcMain.handle('pdf', async (_e, out) => {
@@ -193,7 +179,7 @@ ipcMain.handle('sync-pull', async (_e, { token, folder, gistId }) => {
   return { gistId: g.id, url: g.html_url, count };
 });
 
-const fileArg = (argv) => argv.slice(1).find((a) => /\.(md|markdown|txt)$/i.test(a) && fs.existsSync(a));
+const fileArg = (argv) => argv.slice(1).find((a) => /\.md$/i.test(a) && fs.existsSync(a));
 if (!app.requestSingleInstanceLock()) app.quit();
 else {
   app.on('second-instance', (_e, argv) => {

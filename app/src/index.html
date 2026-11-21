@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="orbit">
+<html lang="en" data-theme="graphite">
 <head>
 <meta charset="utf-8" />
 <title>Maddy MD</title>
@@ -39,6 +39,11 @@
 
   <!-- Sidebar -->
   <aside id="sidebar" aria-label="Pages">
+    <div id="sideEmpty">
+      <div class="se-title">No folder opened</div>
+      <p>You have not yet opened a folder.</p>
+      <button id="sideOpen">Open Folder</button>
+    </div>
     <div class="vault-head" id="vaultHead" title="Switch vault / folder">
       <span class="vault-ic" id="vaultIc">M</span>
       <div class="vault-meta"><b id="vaultName">No vault open</b><span id="folderName">Open a folder to start</span></div>
@@ -54,8 +59,8 @@
     <div class="search-box"><span data-icon="search" data-size="14"></span><input id="filter" aria-label="Search pages, text and tags" placeholder="Search pages, text, #tags…" spellcheck="false" autocomplete="off" /></div>
     <div id="pinned"></div>
     <div class="side-label">Pages</div>
-    <div id="tree"><div class="empty-side">Open a folder of .md or .txt files to see its pages here.</div></div>
-    <div id="vignette"></div>
+    <div id="tree"><div class="empty-side">Open a folder of .md files to see its pages here.</div></div>
+    <div id="vignette"><button class="vg-sign" id="vgSign" title="Open the study list"><b id="vgTitle"></b><span id="vgSub"></span></button></div>
   </aside>
   <div id="resizer"></div>
 
@@ -125,14 +130,12 @@
 </footer>
 
 <template id="welcomeTpl">
-  <div class="welcome">
-    <h1>Maddy MD</h1>
-    <p class="sub">A reading room for your Markdown and text files. Pick a folder and its pages appear on the left.</p>
-    <button class="wl-row" data-act="open"><span class="wi" data-icon="folderOpen" data-size="20"></span><div><b>Open a folder</b><span>Any folder of .md or .txt files</span></div><kbd>Ctrl+Shift+O</kbd></button>
-    <button class="wl-row" data-act="paste"><span class="wi" data-icon="clipboard" data-size="20"></span><div><b>Paste as a new page</b><span>Rich text from ChatGPT or Claude becomes Markdown</span></div><kbd>Ctrl+Shift+V</kbd></button>
-    <button class="wl-row" data-act="switch"><span class="wi" data-icon="search" data-size="20"></span><div><b>Find or create a page</b><span>Type a name; a new one is made if it does not exist</span></div><kbd>Ctrl+O</kbd></button>
-    <button class="wl-row" data-act="palette"><span class="wi" data-icon="command" data-size="20"></span><div><b>Run a command</b><span>Every action in the app, searchable</span></div><kbd>Ctrl+P</kbd></button>
-    <button class="wl-row" data-act="theme"><span class="wi" data-icon="palette" data-size="20"></span><div><b>Choose a theme</b><span>Fifteen scenes, from deep space to a quiet sheet of paper</span></div><kbd>Ctrl+,</kbd></button>
+  <div class="empty-home">
+    <svg class="md-logo" viewBox="0 0 208 128" aria-hidden="true"><rect x="5" y="5" width="198" height="118" rx="10" fill="none" stroke="currentColor" stroke-width="10"/><path fill="currentColor" d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0-30-33h20V30h20v35h20z"/></svg>
+    <div class="eh-actions">
+    <button class="wl-row" data-act="new"><span class="wi" data-icon="filePlus" data-size="16"></span><b>New Page</b><span class="keys"><kbd>Ctrl</kbd>+<kbd>N</kbd></span></button>
+    <button class="wl-row" data-act="open"><span class="wi" data-icon="folderOpen" data-size="16"></span><b>Open Folder</b><span class="keys"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd></span></button>
+    </div>
   </div>
 </template>
 
@@ -146,11 +149,6 @@
     <section data-ds="look" class="on">
       <h3>Theme</h3>
       <div id="themes" class="themes"></div>
-      <h3>Stage</h3>
-      <label class="row col">Scene
-        <select id="scene"><option value="full">Full scene</option><option value="calm">Calm (dimmed scene)</option><option value="off">Plain colour, no scene</option></select></label>
-      <label class="row">Show characters <input type="checkbox" id="chars" /></label>
-      <label class="row">Layers drift as you scroll <input type="checkbox" id="parallax" /></label>
       <label class="row col">Reading sheet
         <select id="sheetTone"><option value="auto">Match the theme</option><option value="light">Light paper</option><option value="dark">Dark paper</option></select></label>
       <h3>Accent</h3>
@@ -198,7 +196,7 @@
       <label class="row col">Interface density <select id="density"><option value="compact">Compact</option><option value="cozy">Cozy</option><option value="roomy">Roomy</option></select></label>
       <label class="row col">Interface scale <span class="val" id="uiScaleV"></span><input type="range" id="uiScale" min="0.85" max="1.3" step="0.05" /></label>
       <label class="row col">Tab style <select id="tabStyle"><option value="chrome">Chrome (curved)</option><option value="pill">Pills</option><option value="underline">Underline</option></select></label>
-      <label class="row">Show page cover &amp; icon <input type="checkbox" id="showCover" /></label>
+      <label class="row">Show page icon <input type="checkbox" id="showCover" /></label>
       <label class="row">Show properties <input type="checkbox" id="showProps" /></label>
       <label class="row">Show right panel <input type="checkbox" id="showToc" /></label>
       <label class="row">Show sidebar <input type="checkbox" id="showSide" /></label>
@@ -210,9 +208,8 @@
     </section>
     <section data-ds="motion">
       <label class="row col">Motion
-        <select id="motion"><option value="full">Full</option><option value="reduced">Reduced (the scene holds still)</option><option value="off">Off</option></select></label>
+        <select id="motion"><option value="full">Full</option><option value="reduced">Reduced</option><option value="off">Off</option></select></label>
       <label class="row">Smooth scrolling <input type="checkbox" id="smoothScroll" /></label>
-      <p class="muted">Scene animation pauses whenever the window is hidden, and follows your Windows "show animations" setting.</p>
     </section>
     <section data-ds="content">
       <label class="row">Render raw HTML <input type="checkbox" id="allowHtml" /></label>
@@ -292,7 +289,6 @@
 <div id="zenHint">Zen mode · drag the edges to resize · <kbd>Esc</kbd> to exit</div>
 <div id="toast" role="status" aria-live="polite"></div>
 <script src="themes.js"></script>
-<script src="scenes.js"></script>
 <script src="app.js"></script>
 <script src="vault.js"></script>
 <script src="personal.js"></script>

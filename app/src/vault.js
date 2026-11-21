@@ -80,20 +80,12 @@ async function renderEmbed(div) {
 }
 
 /* ============ Page header (Notion-style) ============ */
-const COVERS = {
-  aurora: 'linear-gradient(120deg,#7c5cff,#22d3ee 55%,#34d399)', sunset: 'linear-gradient(120deg,#f97316,#ec4899 60%,#8b5cf6)',
-  ocean: 'linear-gradient(120deg,#0ea5e9,#2563eb 60%,#1e1b4b)', forest: 'linear-gradient(120deg,#065f46,#10b981 60%,#a3e635)',
-  peach: 'linear-gradient(120deg,#fde68a,#fca5a5 60%,#f9a8d4)', night: 'radial-gradient(circle at 20% 30%,#4c1d95,#0f172a 70%)',
-  mono: 'linear-gradient(120deg,#334155,#0f172a)', candy: 'linear-gradient(120deg,#a5f3fc,#c4b5fd 50%,#fbcfe8)',
-};
 const EMOJIS = '📝 📘 📗 📙 📕 📓 🗒️ 📌 📎 🧠 💡 🚀 🎯 ✅ ⭐ 🔥 ⚡ 🌱 🌊 🌙 ☀️ 🎨 🎵 🧪 🔬 🛠️ ⚙️ 🧩 📊 📈 💼 🏠 ✈️ 🍀 ❤️ 💬 🔒 🗂️ 📅 ⏱️ 🤖 👋 🦄 🐙 🌍 🏔️ 🍕 ☕'.split(' ');
 const HIDDEN_PROPS = new Set(['icon', 'cover', 'title', 'banner']);
 
 function pageHeader(props, file = state.file, body) {
   if (!file && !state.untitled) return '';
   const title = props.title || (file ? baseName(file) : 'Untitled');
-  const cover = props.cover || props.banner;
-  const coverCss = cover ? (COVERS[cover] || (/^(https?:|file:|data:)/.test(cover) ? `url("${cover}") center/cover` : cover)) : '';
   const firstH1 = /^\s*#\s/.test(body ?? parseFrontmatter(editor.value).body);
   const rows = Object.entries(props).filter(([k]) => !HIDDEN_PROPS.has(k.toLowerCase()));
   const val = (k, v) => {
@@ -104,12 +96,10 @@ function pageHeader(props, file = state.file, body) {
     return esc(v);
   };
   const ic = (k) => (/tag/i.test(k) ? 'hash' : /date|created|updated|due/i.test(k) ? 'calendar' : /url|link|source/i.test(k) ? 'link' : /status/i.test(k) ? 'check' : 'type');
-  return `<div class="page-head${cover ? ' has-cover' : ''}${props.icon ? ' has-icon' : ''}">
-    ${cover ? `<div class="cover" ${window.coverArt && coverArt(cover) ? '' : `style="background:${esc(coverCss)}"`}>${(window.coverArt && coverArt(cover)) || ''}<button class="cover-btn" data-pa="cover">${icon('image', 13)} Change cover</button></div>` : ''}
+  return `<div class="page-head${props.icon ? ' has-icon' : ''}">
     ${props.icon ? `<div class="page-icon" data-pa="icon" title="Change icon">${esc(props.icon)}</div>` : ''}
     <div class="page-tools">
       ${props.icon ? '' : `<button data-pa="icon">${icon('smile', 14)} Add icon</button>`}
-      ${cover ? '' : `<button data-pa="cover">${icon('image', 14)} Add cover</button>`}
       <button data-pa="prop">${icon('list', 14)} Add property</button>
     </div>
     ${firstH1 ? '' : `<h1 class="page-title">${esc(title)}</h1>`}
@@ -148,8 +138,6 @@ preview.addEventListener('click', (e) => {
   const kind = pa.dataset.pa;
   if (kind === 'icon') popover(pa, `<div class="pop-title">Pick an icon</div><div class="emoji-grid">${EMOJIS.map((x) => `<button data-v="${x}">${x}</button>`).join('')}</div><button class="ghost small" data-v="__remove">Remove icon</button>`,
     (v) => setProp('icon', v === '__remove' ? null : v));
-  if (kind === 'cover') popover(pa, `<div class="pop-title">Cover</div><div class="cover-grid">${Object.keys(COVERS).map((k) => `<button data-v="${k}" title="${k}">${coverArt(k) || ''}</button>`).join('')}</div><button class="ghost small" data-v="__remove">Remove cover</button>`,
-    (v) => setProp('cover', v === '__remove' ? null : v));
   if (kind === 'prop') {
     const pop = popover(pa, `<div class="pop-title">New property</div><input id="pName" placeholder="name (e.g. status)"><input id="pVal" placeholder="value (lists: a, b)"><button class="primary small" id="pAdd">Add</button>`, () => {});
     $('#pName', pop).focus();
@@ -387,8 +375,8 @@ $('#rbFiles').onclick = toggleSide; $('#rbSearch').onclick = () => searchFor($('
 $('#rbPalette').onclick = () => openPalette('commands'); $('#rbGraph').onclick = () => openGraph(); $('#rbDaily').onclick = dailyNote;
 $('#rbTheme').onclick = toggleDark; $('#newFolder').onclick = newFolder; $('#vaultHead').onclick = pickFolder;
 preview.addEventListener('click', (e) => {
-  const c = e.target.closest('.welcome .wl-row'); if (!c) return;
-  ({ open: pickFolder, paste: pasteAsDoc, graph: openGraph, palette: () => openPalette('commands'), switch: () => openPalette('files'), theme: () => openDrawer('drawer') })[c.dataset.act]?.();
+  const c = e.target.closest('.welcome .wl-row, .empty-home .wl-row'); if (!c) return;
+  ({ new: () => newDoc(), open: pickFolder, paste: pasteAsDoc, graph: openGraph, palette: () => openPalette('commands'), switch: () => openPalette('files'), theme: () => openDrawer('drawer') })[c.dataset.act]?.();
 });
 
 /* accent swatches + drawer tabs */

@@ -1,10 +1,10 @@
 # Maddy MD
 
-A reading room for your Markdown. Maddy MD is a free Windows app that opens any folder of `.md` and `.txt` files and makes them pleasant to read, study and write. Your files stay plain; everything personal stays out of them.
+A reading room for your Markdown. Maddy MD is a free Windows app that opens any folder of `.md` files and makes them pleasant to read, study and write. Your files stay plain; everything personal stays out of them.
 
 **Website:** <https://maddy-md.vercel.app> · **Download:** [latest release](https://github.com/ahm-raz/maddy-md/releases/latest)
 
-![Maddy MD on the Orbit theme](web/public/shots/orbit.webp)
+![Maddy MD on the Midnight theme](web/public/shots/midnight.webp)
 
 ## Features
 
@@ -15,7 +15,8 @@ A reading room for your Markdown. Maddy MD is a free Windows app that opens any 
 - **Wikilinks, backlinks, tags, outline and a graph view.**
 - **Tabs, split panes, a quick switcher and a command palette.**
 - **Study list, to-dos and sticky notes**, stored on your PC and never written into your files.
-- **15 cut-paper themes** with original characters, plus fonts, widths and motion controls.
+- **12 single-colour themes**, seven dark and five light, plus fonts, widths and motion controls.
+- **Markdown only**: the sidebar shows `.md` files, and nothing else in the folder is touched.
 - **Optional sync** to a private GitHub Gist with your own token.
 
 ## Install
@@ -24,8 +25,8 @@ Download one of these from [Releases](https://github.com/ahm-raz/maddy-md/releas
 
 | File | What it is |
 |---|---|
-| `Maddy-MD-Setup-1.0.0.exe` | Installer. Adds shortcuts and opens `.md` files on double-click. |
-| `Maddy-MD-Portable-1.0.0.exe` | Runs without installing. |
+| `Maddy-MD-Setup-1.1.0.exe` | Installer. Adds shortcuts and opens `.md` files on double-click. |
+| `Maddy-MD-Portable-1.1.0.exe` | Runs without installing. |
 
 Windows 10 or 11, 64-bit. The app is not code-signed yet, so Windows SmartScreen may show "Windows protected your PC": choose **More info**, then **Run anyway**.
 
